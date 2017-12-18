@@ -1,0 +1,16 @@
+#extend("base")
+#export("title") { #(page) }
+#export("content") {
+
+	<div class="col-md-4 mx-auto">
+		<form class="form-signin" action="/login" method="post">
+			<div class="form-group">
+				<input name="email" type="email" class="form-control" id="inputEmail" placeholder="Enter email">
+			</div>
+			<div class="form-group">
+				<input name="password" type="password" class="form-control" id="inputPassword" placeholder="Enter password">
+			</div>
+			<button type="submit" class="btn btn-primary btn-block">Login</button>
+		</form>
+	</div>
+}

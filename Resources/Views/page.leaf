@@ -1,0 +1,23 @@
+#extend("base")
+#export("title") { #(page.name) }
+#export("content") {
+<div class="col-md-12 mx-auto">
+	<h1 class="text-center">#(page.name)</h1>
+	#if(disqus_name) { #if(page){
+	<div id="blog-post-data" data-post-identifier="#(page.id)" data-disqus-name="#(disqus_name)"></div>
+	<div id="disqus_thread" class="text-center col-md-10 ml-auto mr-auto"></div>
+	<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	}}
+<div>
+}
+
+#export("js") {
+#if(disqus_name) { #if(page){
+<script src="/static/js/disqus.js"></script>
+}}
+<script src="/static/js/prismHighlighting.js"></script>
+#if(google_analytics_identifier) {
+<div id="google-analytics-data" data-identifier="#(google_analytics_identifier)"></div>
+<script src="/static/js/analytics.js"></script>
+}
+}

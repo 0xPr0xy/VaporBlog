@@ -1,0 +1,47 @@
+<nav class="navbar navbar-toggleable-md sticky-top navbar-inverse bg-inverse">
+
+	<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#()navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<a class="navbar-brand" href="/">Navbar</a>
+
+	<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+
+		<ul class="navbar-nav mr-auto">
+
+			#if(user) {
+
+			<li class="nav-item #equal(currentSlug, "admin") { active }">
+				<a class="nav-link" href="/admin">
+				Admin #equal(currentSlug, "admin") { <span class="sr-only">(current)</span> }
+				</a>
+			</li>
+			<li class="nav-item #equal(currentSlug, "pages") { active }">
+				<a class="nav-link" href="/admin/pages">
+				Pages #equal(currentSlug, "pages") { <span class="sr-only">(current)</span> }
+				</a>
+			</li>
+
+			} ##else() {
+			#loop(pages, "page") {
+
+				<li class="nav-item #equal(currentSlug, page.slug) { active }">
+					<a class="nav-link" href="#(page.slug)">
+						#(page.name) #equal(currentSlug, page.slug) { <span class="sr-only">(current)</span> }
+					</a>
+				</li>
+
+			}
+			}
+
+		</ul>
+
+		<form class="form-inline" action="/search" method="get">
+			<input class="form-control mr-sm-2" type="text" name="search" placeholder="Search">
+			<button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+		</form>
+
+	</div>
+
+</nav>

@@ -2,11 +2,14 @@
 <html>
 <head>
 	<title>#import("title")</title>
-	<link rel="stylesheet" href="/styles/app.css">
+	#embed("css")
 </head>
 <body>
-
-#import("content")
-
+#embed("navigation")
+<div class="container mt-3">
+	#import("content")
+</div>
+#embed("js")
+#import("js"")
 </body>
 </html>

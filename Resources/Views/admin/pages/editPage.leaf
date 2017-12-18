@@ -1,0 +1,18 @@
+#extend("base")
+#export("title") { #(title) }
+#export("content") {
+
+<div class="col-md-4 mx-auto">
+
+	<h1>#(title)</h1>
+
+	<form class="form-page-update" action="/admin/pages/#(page.id)/edit" method="post">
+		<div class="form-group">
+			<input name="name" type="text" class="form-control" id="inputName" value="#(page.name)" "placeholder="Page Name"">
+		</div>
+		<button type="submit" class="btn btn-success btn-block">Save</button>
+	</form>
+
+<div>
+
+}
