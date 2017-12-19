@@ -2,6 +2,19 @@
     <img src="https://cloud.githubusercontent.com/assets/1977704/25426816/a9d40530-2a70-11e7-9758-8a0da6341035.png" width="320" alt="Web Template">
     <br>
     <br>
+    <img src="/Screenshots/pages_with_articles.png?raw=true" width="600">
+    <br>
+    <img src="/Screenshots/search.png?raw=true" width="600">
+    <br>
+    <img src="/Screenshots/login.png?raw=true" width="600">
+    <br>
+    <img src="/Screenshots/admin_pages.png?raw=true" width="600">
+    <br>
+    <img src="/Screenshots/admin_articles.png?raw=true" width="600">
+    <br>
+    <img src="/Screenshots/admin_articles_new.png?raw=true" width="600">
+    <br>
+    <br>
     <a href="https://docs.vapor.codes/2.0/getting-started/toolbox/#templates">
         <img src="http://img.shields.io/badge/read_the-docs-92A8D1.svg" alt="Documentation">
     </a>
