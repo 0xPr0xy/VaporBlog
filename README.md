@@ -9,6 +9,31 @@
     <li> Google Analytics on Public Pages </li>
     <li> Disqus on Public Articles </li>
 </ul>
+<h2>Setup</h2>
+<h3>1. Fixture User</h3>
+<p>First create the following folder and file:<pre><code>Config/secrets/fixture_user.json</code></pre> Then, put the following json inside:</p>
+<pre><code>
+{
+	"name": "Admin",
+	"email": "name@email.com",
+	"password": "password"
+}
+</code></pre>
+<h3>2. Analytics and Disqus (optional)</h3>
+<p>Create the following folder and file:<pre><code>Config/secrets/third_party.json</code></pre> And put the following json inside:</p>
+<pre><code>
+{
+	"ga_identifier": "$GA_IDENTIFIER",
+	"disqus_name": "$DISQUS_NAME"
+}
+</code></pre>
+<h3>3. Install Dependencies</h3>
+<pre><code>vapor fetch</code></pre>
+<h3>4. Build</h3>
+<pre><code>vapor build</code></pre>
+<h3>5. Run</h3>
+<pre><code>vapor run</code></pre>
+
 <p align="center">
     <img src="https://cloud.githubusercontent.com/assets/1977704/25426816/a9d40530-2a70-11e7-9758-8a0da6341035.png" width="320" alt="Web Template">
     <br>
