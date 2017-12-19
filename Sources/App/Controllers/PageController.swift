@@ -22,7 +22,7 @@ final class PageController {
 	func view(_ request: Request) throws -> ResponseRepresentable {
 		let slug = request.uri.lastPathComponent ?? ""
 		let page = try PageProvider.pageWithSlug(slug)
-		let articles = try page?.articles.all()
+		let articles = try page?.articles.all().paginator(3, request: request)
 		let pages = try PageProvider.allPages()
 		
 		return try view.makePageView(request, config, pages: pages, page: page, articles: articles)

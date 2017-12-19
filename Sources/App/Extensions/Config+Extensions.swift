@@ -3,6 +3,7 @@ import FluentProvider
 import MySQLProvider
 import AuthProvider
 import MarkdownProvider
+import Paginator
 
 extension Config {
     public func setup() throws {
@@ -20,6 +21,7 @@ extension Config {
 		try addProvider(MySQLProvider.Provider.self)
 		try addProvider(AuthProvider.Provider.self)
 		try addProvider(MarkdownProvider.Provider.self)
+		try addProvider(PaginatorProvider.self)
     }
 	
 	private func setupPreparations() {

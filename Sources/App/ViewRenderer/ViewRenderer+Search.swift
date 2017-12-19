@@ -1,6 +1,8 @@
+import Paginator
+
 extension ViewRenderer {
 
-	func makeSearchResultsView(_ request: Request, _ config: Config, search: String, pages: [Page], results: [Page]) throws -> View {
+	func makeSearchResultsView(_ request: Request, _ config: Config, search: String, pages: [Page], results: Paginator<Page>) throws -> View {
 		return try self.make("search", [
 			"currentSlug": request.uri.lastPathComponent ?? "",
 			"searchTerm": search,

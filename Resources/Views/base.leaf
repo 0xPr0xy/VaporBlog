@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Vapor Blogging Framework in Swift">
+	<meta name="author" content="Peter IJlst and Vapor contributors">
+
 	<title>#import("title")</title>
 	#embed("css")
 	#import("css")

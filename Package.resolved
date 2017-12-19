@@ -200,6 +200,15 @@
         }
       },
       {
+        "package": "Paginator",
+        "repositoryURL": "https://github.com/nodes-vapor/paginator",
+        "state": {
+          "branch": null,
+          "revision": "13fc98667d2b2ce22a107d986098358e877587b9",
+          "version": "1.1.3"
+        }
+      },
+      {
         "package": "Random",
         "repositoryURL": "https://github.com/vapor/random.git",
         "state": {

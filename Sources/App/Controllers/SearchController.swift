@@ -20,7 +20,7 @@ final class SearchController {
 		}
 		
 		let pages = try PageProvider.allPages()
-		let results = try PageProvider.pagesWithKeyword(search)
+		let results = try PageProvider.pagesWithKeywordPaginated(search, count: 10, request: request)
 		
 		return try view.makeSearchResultsView(request, config, search: search, pages: pages, results: results)
 	}

@@ -2,25 +2,26 @@
 #export("title") { Results for #(searchTerm) }
 #export("content") {
 
-	<div class="col-md-4 mx-auto">
+	<div class="col-md-12">
 		<h1 class="text-center">Results for #(searchTerm)</h1>
 
 		<div class="list-group">
 
-			#if(results) {
-			#loop(results, "result") {
+			#if(results.data) {
+			#loop(results.data, "result") {
 
-				<a href="#(result.slug)" class="list-group-item list-group-item-action flex-column align-items-start">
+				<a href="#(result.slug)" class="list-group-item list-group-item-action flex-column align-items-start mb-3">
 					<div class="d-flex w-100 justify-content-between">
 						<h5 class="mb-1">#(result.name)</h5>
 					</div>
 				</a>
 
 			}
+			#paginator(results)
 			}
 			##else() {
 
-				<p>No Results</p>
+				<p class="text-center">No Results</p>
 
 			}
 

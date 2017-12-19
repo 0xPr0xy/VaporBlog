@@ -4,11 +4,14 @@
 <ul>
     <li> Authentication </li>
     <li> Search </li>
-    <li> Admin Page creation </li>
-    <li> Admin Article creation </li>
-    <li> Google Analytics on Public Pages </li>
-    <li> Disqus on Public Articles </li>
+    <li> Pagination </li>
+    <li> Page and Article creation </li>
+    <li> Markdown </li>
+    <li> Syntax Highlighting </li>
+    <li> Google Analytics </li>
+    <li> Disqus </li>
 </ul>
+
 <h2>Setup</h2>
 <h3>1. Fixture User</h3>
 <p>First create the following folder and file:<pre><code>Config/secrets/fixture_user.json</code></pre> Then, put the following json inside:</p>
@@ -39,6 +42,8 @@
     <br>
     <br>
     <img src="/Screenshots/pages_with_articles.png?raw=true">
+    <br>
+    <img src="/Screenshots/syntax.png?raw=true">
     <br>
     <img src="/Screenshots/disqus.png?raw=true">
     <br>

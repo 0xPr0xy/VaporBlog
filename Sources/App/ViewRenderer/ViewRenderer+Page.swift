@@ -1,6 +1,8 @@
+import Paginator
+
 extension ViewRenderer {
 	
-	func makePageView(_ request: Request, _ config: Config, pages: [Page], page: Page? = nil, articles: [Article]?) throws -> View {
+	func makePageView(_ request: Request, _ config: Config, pages: [Page], page: Page? = nil, articles: Paginator<Article>?) throws -> View {
 		return try self.make("page", [
 			"currentSlug": request.uri.lastPathComponent ?? "",
 			"pages": pages,

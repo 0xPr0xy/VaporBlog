@@ -67,7 +67,7 @@
 <input name="name" type="text" class="form-control" id="inputName" placeholder="Article Name">
 </div>
 <div class="form-group">
-<textarea name="body" type="text" class="form-control" id="inputBody" placeholder="Article Body"></textarea>
+<textarea rows="10" name="body" type="text" class="form-control" id="inputBody" placeholder="Article Body"></textarea>
 </div>
 
 <div class="form-group">

@@ -11,7 +11,7 @@
 			<input name="name" type="text" class="form-control" id="inputName" placeholder="Page Name">
 		</div>
 		<div class="form-group">
-		<textarea name="body" type="text" class="form-control" id="inputBody" value="#(page.body)" placeholder="Page Body"></textarea>
+		<textarea rows="10" name="body" type="text" class="form-control" id="inputBody" value="#(page.body)" placeholder="Page Body"></textarea>
 		</div>
 		<button type="submit" class="btn btn-success btn-block">Create</button>
 	</form>
