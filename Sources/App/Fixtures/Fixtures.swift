@@ -8,6 +8,12 @@ final class Fixtures {
 		let blogPage = Page(name: "Blog")
 		try blogPage.save()
 		
+		let blogArticleOne = Article(name: "article 1 name", body: "article body", page: blogPage)
+		try blogArticleOne.save()
+		
+		let blogArticleTwo = Article(name: "article 2 name", body: "article body", page: blogPage)
+		try blogArticleTwo.save()
+		
 		let aboutPage = Page(name: "About")
 		try aboutPage.save()
 		

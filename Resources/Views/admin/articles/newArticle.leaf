@@ -1,0 +1,24 @@
+#extend("base")
+#export("title") { #(title) }
+#export("content") {
+
+<div class="col-md-4 mx-auto">
+
+<h1>#(title)</h1>
+
+<form class="form-article-new" action="/admin/articles/save" method="post">
+<div class="form-group">
+<input name="name" type="text" class="form-control" id="inputName" placeholder="Article Name">
+</div>
+<div class="form-group">
+<input name="body" type="text" class="form-control" id="inputBody" placeholder="Article Body">
+</div>
+<div class="form-group">
+<input name="page_id" type="number" class="form-control" id="inputPageId" placeholder="Page ID">
+</div>
+<button type="submit" class="btn btn-success btn-block">Create</button>
+</form>
+
+<div>
+
+}

@@ -1,37 +1,36 @@
 extension ViewRenderer {
 	
-	func makePageView(_ request: Request, _ config: Config, pages: [Page], page: Page? = nil, articles: [Article]?) throws -> View {
-		return try self.make("page", [
+	func makeArticleView(_ request: Request, _ config: Config, pages: [Page], article: Article) throws -> View {
+		return try self.make("article", [
 			"currentSlug": request.uri.lastPathComponent ?? "",
+			"article": article,
 			"pages": pages,
-			"page":  page ?? false,
-			"articles": articles ?? [],
 			"google_analytics_identifier" : config["third_party", "ga_identifier"]?.string ?? false,
 			"disqus_name" : config["third_party", "disqus_name"]?.string ?? false
 			], for: request
 		)
 	}
 	
-	func makePageListView(_ request: Request, pages: [Page], title: String) throws -> View {
+	func makeArticleListView(_ request: Request, articles: [Article], title: String) throws -> View {
 		guard let user: User = request.auth.authenticated() else {
 			throw Abort.unauthorized
 		}
 		
-		return try self.make("admin/pages/listPages", [
+		return try self.make("admin/articles/listArticles", [
 			"currentSlug": request.uri.lastPathComponent ?? "",
 			"user":  user,
-			"pages": pages,
+			"articles": articles,
 			"title": title
 			], for: request
 		)
 	}
-
-	func makeNewPageView(_ request: Request, title: String) throws -> View {
+	
+	func makeNewArticleView(_ request: Request, title: String) throws -> View {
 		guard let user: User = request.auth.authenticated() else {
 			throw Abort.unauthorized
 		}
 		
-		return try self.make("admin/pages/newPage", [
+		return try self.make("admin/articles/newArticle", [
 			"currentSlug": request.uri.lastPathComponent ?? "",
 			"user": user,
 			"title": title,
@@ -39,15 +38,15 @@ extension ViewRenderer {
 		)
 	}
 	
-	func makeEditPageView(_ request: Request, page: Page, title: String) throws -> View {
+	func makeEditArticleView(_ request: Request, article: Article, title: String) throws -> View {
 		guard let user: User = request.auth.authenticated() else {
 			throw Abort.unauthorized
 		}
 		
-		return try self.make("admin/pages/editPage", [
+		return try self.make("admin/articles/editArticle", [
 			"currentSlug": request.uri.lastPathComponent ?? "",
 			"user": user,
-			"page": page,
+			"article": article,
 			"title": title,
 			], for: request
 		)

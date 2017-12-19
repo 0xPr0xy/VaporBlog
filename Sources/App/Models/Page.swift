@@ -33,6 +33,18 @@ final class Page: Model, Parameterizable {
 	}
 }
 
+// MARK: - Relations -
+
+extension Page {
+	
+	var articles: Children<Page, Article> {
+		return children()
+	}
+
+}
+
+// MARK: - Conformance -
+
 extension Page: NodeRepresentable {
 	
 	func makeNode(in context: Context?) throws -> Node {

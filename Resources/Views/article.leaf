@@ -1,25 +1,26 @@
 #extend("base")
-#export("title") { #(page.name) }
+#export("title") { #(article.name) }
 #export("content") {
 <div class="col-md-12 mx-auto">
-	<h1 class="text-center">#(page.name)</h1>
-
-#if(articles) {
-#loop(articles, "article") {
 <div class="card mt-4 mb-4">
 	<div class="card-body">
 		<h4 class="card-title">#(article.name)</h4>
 		<p class="card-text">#(article.body)</p>
-		<a href="/#(page.slug)/articles/#(article.id)" class="btn btn-primary">View Article</a>
 	</div>
 </div>
-}
-}
 
+#if(disqus_name) {
+<div id="article-data" data-article-identifier="#(article.id)" data-disqus-name="#(disqus_name)"></div>
+<div id="disqus_thread" class="text-center col-md-10 ml-auto mr-auto"></div>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+}
 <div>
 }
 
 #export("js") {
+#if(disqus_name) {
+<script src="/static/js/disqus.js"></script>
+}
 <script src="/static/js/prismHighlighting.js"></script>
 #if(google_analytics_identifier) {
 <div id="google-analytics-data" data-identifier="#(google_analytics_identifier)"></div>

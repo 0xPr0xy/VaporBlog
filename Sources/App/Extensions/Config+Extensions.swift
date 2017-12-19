@@ -23,5 +23,6 @@ extension Config {
 	private func setupPreparations() {
 		self.preparations.append(Page.self)
 		self.preparations.append(User.self)
+		self.preparations.append(Article.self)
 	}
 }

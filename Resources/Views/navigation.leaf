@@ -22,12 +22,17 @@
 				Pages #equal(currentSlug, "pages") { <span class="sr-only">(current)</span> }
 				</a>
 			</li>
+			<li class="nav-item #equal(currentSlug, "articles") { active }">
+				<a class="nav-link" href="/admin/articles">
+				Articles #equal(currentSlug, "articles") { <span class="sr-only">(current)</span> }
+				</a>
+			</li>
 
 			} ##else() {
 			#loop(pages, "page") {
 
 				<li class="nav-item #equal(currentSlug, page.slug) { active }">
-					<a class="nav-link" href="#(page.slug)">
+					<a class="nav-link" href="/#(page.slug)">
 						#(page.name) #equal(currentSlug, page.slug) { <span class="sr-only">(current)</span> }
 					</a>
 				</li>
