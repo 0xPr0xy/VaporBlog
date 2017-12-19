@@ -2,6 +2,8 @@
 #export("title") { #(title) }
 #export("css") {
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+
 <style>
 .dropdown-toggle.btn-default {
 color: #()292b2c;
@@ -82,10 +84,12 @@ display: inline !important;
 }
 
 #export("js") {
+<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
 <script>
 $(document).ready(function() {
 $('.selectpicker').selectpicker();
+var simplemde = new SimpleMDE();
 });
 </script>
 }

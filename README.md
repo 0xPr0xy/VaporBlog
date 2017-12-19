@@ -7,7 +7,7 @@
     <li> Pagination </li>
     <li> Page and Article creation </li>
     <li> Uploads </li>
-    <li> Markdown </li>
+    <li> Markdown support and editor </li>
     <li> Syntax Highlighting </li>
     <li> Google Analytics </li>
     <li> Disqus </li>

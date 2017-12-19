@@ -1,5 +1,8 @@
 #extend("base")
 #export("title") { #(title) }
+#export("css") {
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+}
 #export("content") {
 
 <div class="col-md-6 mx-auto">
@@ -19,4 +22,13 @@
 
 <div>
 
+}
+
+#export("js") {
+<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+<script>
+$(document).ready(function() {
+var simplemde = new SimpleMDE();
+});
+</script>
 }
