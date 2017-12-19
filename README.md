@@ -15,6 +15,8 @@
     <br>
     <img src="/Screenshots/pages_with_articles.png?raw=true">
     <br>
+    <img src="/Screenshots/disqus.png?raw=true">
+    <br>
     <img src="/Screenshots/search.png?raw=true">
     <br>
     <img src="/Screenshots/login.png?raw=true">
