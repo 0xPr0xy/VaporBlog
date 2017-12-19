@@ -1,0 +1,34 @@
+#extend("base")
+#export("title") { #(title) }
+#export("content") {
+
+<div class="col-md-6 mx-auto">
+<h1 class="text-center">#(title)</h1>
+<div>
+
+#if(uploads) {
+<table class="table table-striped table-hover table-bordered">
+<thead>
+<tr>
+<th>Image</th>
+<th>Name</th>
+<th>Delete</th>
+</tr>
+</thead>
+<tbody>
+
+#loop(uploads, "upload") {
+
+<tr>
+<td><img src="/static/uploads/#(upload.name)" width="200" class="rounded"/></td>
+<td><a href="/static/uploads/#(upload.name)">#(upload.name)</a></td>
+<td><a class="btn btn-danger delete-post-button" href="/admin/uploads/#(upload.id)/delete">Delete</a></td>
+</tr>
+
+}
+
+</tbody>
+<table>
+}
+<a class="btn btn-success btn-block new-post-button" href="/admin/uploads/new">New Upload</a>
+}

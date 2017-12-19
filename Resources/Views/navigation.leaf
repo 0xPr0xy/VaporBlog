@@ -27,6 +27,11 @@
 				Articles #equal(currentSlug, "articles") { <span class="sr-only">(current)</span> }
 				</a>
 			</li>
+			<li class="nav-item #equal(currentSlug, "uploads") { active }">
+				<a class="nav-link" href="/admin/uploads">
+				Uploads #equal(currentSlug, "uploads") { <span class="sr-only">(current)</span> }
+				</a>
+			</li>
 
 			} ##else() {
 			#loop(pages, "page") {

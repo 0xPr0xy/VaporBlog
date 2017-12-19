@@ -6,6 +6,7 @@
     <li> Search </li>
     <li> Pagination </li>
     <li> Page and Article creation </li>
+    <li> Uploads </li>
     <li> Markdown </li>
     <li> Syntax Highlighting </li>
     <li> Google Analytics </li>
@@ -54,6 +55,8 @@
     <img src="/Screenshots/admin_pages.png?raw=true">
     <br>
     <img src="/Screenshots/admin_articles.png?raw=true">
+    <br>
+    <img src="/Screenshots/uploads.png?raw=true">
     <br>
     <img src="/Screenshots/admin_articles_new.png?raw=true">
     <br>

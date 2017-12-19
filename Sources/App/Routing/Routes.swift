@@ -36,6 +36,7 @@ final class Routes: RouteCollection {
 		
 		_ = try PageController(view, config, adminRouteBuilder: adminBuilder, publicRouteBuilder: loginBuilder)
 		_ = try ArticleController(view, config, adminRouteBuilder: adminBuilder, publicRouteBuilder: loginBuilder)
+		_ = UploadController(view, config, routeBuilder: adminBuilder)
 		_ = LoginController(view, config, routeBuilder: loginBuilder)
 		_ = SearchController(view, config, routeBuilder: loginBuilder)
 	}

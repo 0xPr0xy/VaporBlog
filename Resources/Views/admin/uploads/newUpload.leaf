@@ -1,0 +1,23 @@
+#extend("base")
+
+#export("title") { #(title) }
+
+#export("content") {
+
+<div class="col-md-6 mx-auto">
+
+<h1 class="text-center">#(title)</h1>
+
+<form enctype="multipart/form-data" action="/admin/uploads/new" id="create-upload-form" method="post" class="mt-3" novalidate>
+
+	<div class="form-group" id="create-upload-file-group">
+		<input type="file" class="form-control-file" id="inputFile" name="file" placeholder="Upload File" value="#(file_supplied)" autofocus required>
+	</div>
+
+	<button type="submit" class="btn btn-success btn-block">Create</button>
+
+</form>
+
+</div>
+
+}
