@@ -49,6 +49,9 @@ final class PageController {
 		}
 		
 		let page = Page(name: name)
+		if let body = request.formURLEncoded?["body"]?.string {
+			page.body = body
+		}
 		try page.save()
 		
 		self.publicRouteBuilder.get(page.slug, handler: view)
@@ -66,11 +69,18 @@ final class PageController {
 	func edit(_ request: Request) throws -> ResponseRepresentable {
 		let page = try getPage(request)
 		
-		guard let name = request.formURLEncoded?["name"]?.string else {
+		guard
+			let name = request.formURLEncoded?["name"]?.string
+		else {
 			throw Abort.badRequest
 		}
 		
 		page.name = name
+		
+		if let body = request.formURLEncoded?["body"]?.string {
+			page.body = body
+		}
+		
 		try page.save()
 		
 		return Response(redirect: "/admin/pages")

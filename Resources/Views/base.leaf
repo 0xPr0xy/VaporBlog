@@ -3,6 +3,7 @@
 <head>
 	<title>#import("title")</title>
 	#embed("css")
+	#import("css")
 </head>
 <body>
 #embed("navigation")
@@ -10,6 +11,6 @@
 	#import("content")
 </div>
 #embed("js")
-#import("js"")
+#import("js")
 </body>
 </html>

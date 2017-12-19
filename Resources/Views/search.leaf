@@ -3,7 +3,7 @@
 #export("content") {
 
 	<div class="col-md-4 mx-auto">
-		<h1>Results for #(searchTerm)</h1>
+		<h1 class="text-center">Results for #(searchTerm)</h1>
 
 		<div class="list-group">
 

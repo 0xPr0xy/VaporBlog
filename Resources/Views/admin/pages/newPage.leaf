@@ -2,13 +2,16 @@
 #export("title") { #(title) }
 #export("content") {
 
-<div class="col-md-4 mx-auto">
+<div class="col-md-6 mx-auto">
 
-	<h1>#(title)</h1>
+	<h1 class="text-center">#(title)</h1>
 
 	<form class="form-page-new" action="/admin/pages/save" method="post">
 		<div class="form-group">
 			<input name="name" type="text" class="form-control" id="inputName" placeholder="Page Name">
+		</div>
+		<div class="form-group">
+		<textarea name="body" type="text" class="form-control" id="inputBody" value="#(page.body)" placeholder="Page Body"></textarea>
 		</div>
 		<button type="submit" class="btn btn-success btn-block">Create</button>
 	</form>

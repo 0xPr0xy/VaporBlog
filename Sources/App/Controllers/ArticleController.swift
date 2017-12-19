@@ -37,8 +37,9 @@ final class ArticleController {
 	
 	func new(_ request: Request) throws -> ResponseRepresentable {
 		let title = "New Article"
+		let pages = try PageProvider.allPages()
 		
-		return try view.makeNewArticleView(request, title: title)
+		return try view.makeNewArticleView(request, pages: pages, title: title)
 	}
 	
 	func save(_ request: Request) throws -> ResponseRepresentable {
@@ -63,8 +64,9 @@ final class ArticleController {
 	func showEdit(_ request: Request) throws -> ResponseRepresentable {
 		let article = try getArticle(request)
 		let title = "Edit Article"
-		
-		return try view.makeEditArticleView(request, article: article, title: title)
+		let pages = try PageProvider.allPages()
+
+		return try view.makeEditArticleView(request, article: article, pages: pages, title: title)
 	}
 	
 	func edit(_ request: Request) throws -> ResponseRepresentable {
@@ -72,13 +74,19 @@ final class ArticleController {
 		
 		guard
 			let name = request.formURLEncoded?["name"]?.string,
-			let body = request.formURLEncoded?["body"]?.string
+			let body = request.formURLEncoded?["body"]?.string,
+			let pageId = request.formURLEncoded?["page_id"]?.string
 		else {
+			throw Abort.badRequest
+		}
+		
+		guard let page = try Page.find(pageId) else {
 			throw Abort.badRequest
 		}
 		
 		article.name = name
 		article.body = body
+		article.pageID = page.id
 		
 		try article.save()
 		

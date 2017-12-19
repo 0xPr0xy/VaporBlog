@@ -12,8 +12,8 @@
 #loop(articles, "article") {
 
 <tr>
-<td><a href="/#(article.pageSlug)/articles/#(article.id)">#(article.name)</a></td>
-<td><a href="/#(article.pageSlug)">#(article.page_id)</a></td>
+<td><a href="/#(article.page.slug)/articles/#(article.id)">#(article.name)</a></td>
+<td><a href="/#(article.page.slug)">#(article.page.name)</a></td>
 <td><a class="btn btn-warning" href="/admin/articles/#(article.id)/show">Edit</a></td>
 <td><a class="btn btn-danger delete-post-button" href="/admin/articles/#(article.id)/delete">Delete</a></td>
 </tr>

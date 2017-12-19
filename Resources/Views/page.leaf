@@ -1,15 +1,19 @@
 #extend("base")
 #export("title") { #(page.name) }
+#export("css") {
+<link rel="stylesheet" href="/static/styles/prismHighlighting.css">
+}
 #export("content") {
 <div class="col-md-12 mx-auto">
 	<h1 class="text-center">#(page.name)</h1>
+	<p class="text-center">#markdown(page.body)<p>
 
 #if(articles) {
 #loop(articles, "article") {
 <div class="card mt-4 mb-4">
 	<div class="card-body">
 		<h4 class="card-title">#(article.name)</h4>
-		<p class="card-text">#(article.body)</p>
+		<p class="card-text">#markdown(article.body)</p>
 		<a href="/#(page.slug)/articles/#(article.id)" class="btn btn-primary">View Article</a>
 	</div>
 </div>

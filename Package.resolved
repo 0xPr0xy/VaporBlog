@@ -146,6 +146,15 @@
         }
       },
       {
+        "package": "MarkdownProvider",
+        "repositoryURL": "https://github.com/vapor-community/markdown-provider.git",
+        "state": {
+          "branch": null,
+          "revision": "554143db48dc1e1fb3ebceb83eb501a39966db08",
+          "version": "1.1.1"
+        }
+      },
+      {
         "package": "Multipart",
         "repositoryURL": "https://github.com/vapor/multipart.git",
         "state": {
@@ -236,6 +245,15 @@
         }
       },
       {
+        "package": "SwiftMarkdown",
+        "repositoryURL": "https://github.com/vapor-community/markdown.git",
+        "state": {
+          "branch": null,
+          "revision": "aea4876786fa284f6d86af1ce3436a17e22035b5",
+          "version": "0.4.0"
+        }
+      },
+      {
         "package": "TLS",
         "repositoryURL": "https://github.com/vapor/tls.git",
         "state": {
@@ -251,6 +269,15 @@
           "branch": null,
           "revision": "0747ab4819f90c9be451847f80a153184526ad79",
           "version": "2.3.0"
+        }
+      },
+      {
+        "package": "cmark",
+        "repositoryURL": "https://github.com/brokenhandsio/cmark-gfm.git",
+        "state": {
+          "branch": null,
+          "revision": "28d762c29119b5e1c3c0ba1e87198a6c0abcdd7a",
+          "version": "1.0.0"
         }
       }
     ]

@@ -6,6 +6,7 @@ final class Page: Model, Parameterizable {
 	
 	var name: String
 	var slug: String
+	var body: String?
 	
 	let storage = Storage()
 	
@@ -22,12 +23,14 @@ final class Page: Model, Parameterizable {
 	init(row: Row) throws {
 		name = try row.get("name")
 		slug = try row.get("slug")
+		body = try row.get("body")
 	}
 	
 	func makeRow() throws -> Row {
 		var row = Row()
 		try row.set("name", name)
 		try row.set("slug", slug)
+		try row.set("body", body)
 		
 		return row
 	}
@@ -50,6 +53,7 @@ extension Page: NodeRepresentable {
 	func makeNode(in context: Context?) throws -> Node {
 		var node = Node(context)
 		try node.set("name", name)
+		try node.set("body", body)
 		try node.set("slug", slug)
 		try node.set("id", id)
 		
@@ -63,6 +67,7 @@ extension Page: Preparation {
 		try database.create(self) { pages in
 			pages.id()
 			pages.string("name")
+			pages.text("body", optional: true, unique: false, default: nil)
 			pages.string("slug", unique: true)
 		}
 	}

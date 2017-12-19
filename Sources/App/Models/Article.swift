@@ -63,9 +63,8 @@ extension Article: NodeRepresentable {
 		try node.set("slug", slug)
 		try node.set("body", body)
 		try node.set("id", id)
-		try node.set(Page.foreignIdKey, pageID)
-		try node.set("pageSlug", page.get()?.slug)
-		
+		try node.set("page", page.get())
+
 		return node
 	}
 }

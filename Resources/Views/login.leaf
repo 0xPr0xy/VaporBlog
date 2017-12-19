@@ -1,8 +1,8 @@
 #extend("base")
 #export("title") { #(page) }
 #export("content") {
-
 	<div class="col-md-4 mx-auto">
+	<h1 class="text-center">Login</h1>
 		<form class="form-signin" action="/login" method="post">
 			<div class="form-group">
 				<input name="email" type="email" class="form-control" id="inputEmail" placeholder="Enter email">
