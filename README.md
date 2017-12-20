@@ -9,7 +9,7 @@
     <li> Uploads </li>
     <li> Markdown support and editor </li>
     <li> Syntax Highlighting </li>
-    <li> Google Analytics </li>
+    <li> Google Analytics tracking and Admin dashboard</li>
     <li> Disqus </li>
 </ul>
 
@@ -27,6 +27,7 @@
 <p>Create the following folder and file:<pre><code>Config/secrets/third_party.json</code></pre> And put the following json inside:</p>
 <pre><code>
 {
+	"ga_api_client_id": "$GA_EMBED_API_CLIENT_ID",
 	"ga_identifier": "$GA_IDENTIFIER",
 	"disqus_name": "$DISQUS_NAME"
 }
@@ -42,15 +43,9 @@
     <img src="https://cloud.githubusercontent.com/assets/1977704/25426816/a9d40530-2a70-11e7-9758-8a0da6341035.png" width="320" alt="Web Template">
     <br>
     <br>
-    <img src="/Screenshots/pages_with_articles.png?raw=true">
-    <br>
-    <img src="/Screenshots/syntax.png?raw=true">
-    <br>
-    <img src="/Screenshots/disqus.png?raw=true">
-    <br>
-    <img src="/Screenshots/search.png?raw=true">
-    <br>
     <img src="/Screenshots/login.png?raw=true">
+    <br>
+    <img src="/Screenshots/admin.png?raw=true">
     <br>
     <img src="/Screenshots/admin_pages.png?raw=true">
     <br>
@@ -59,6 +54,10 @@
     <img src="/Screenshots/uploads.png?raw=true">
     <br>
     <img src="/Screenshots/admin_articles_new.png?raw=true">
+    <br>
+    <img src="/Screenshots/syntax.png?raw=true">
+    <br>
+    <img src="/Screenshots/search.png?raw=true">
     <br>
     <br>
     <a href="https://docs.vapor.codes/2.0/getting-started/toolbox/#templates">

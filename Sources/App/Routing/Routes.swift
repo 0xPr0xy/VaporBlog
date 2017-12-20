@@ -27,7 +27,7 @@ final class Routes: RouteCollection {
 			self.passwordMiddleware
 		])
 		
-		_ = AdminController(view, routeBuilder: adminBuilder)
+		_ = AdminController(view, config, routeBuilder: adminBuilder)
 		
 		let loginBuilder = builder.grouped([
 			self.sessionsMiddleware,
