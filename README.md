@@ -36,14 +36,11 @@
 <pre><code>vapor run</code></pre>
 
 <h2>Running in Production</h2>
-<p>If you want to run in production, make sure you change `mysql.json` in the `Config/production/` folder.
-Then you run in production with</p>
+<p>If you want to run in production, make sure you change the values in Config/production/mysql.json</p>
+<p>Then you run in production with</p>
 <pre><code>vapor run --env=production</code></pre>
 
 <p align="center">
-    <img src="https://cloud.githubusercontent.com/assets/1977704/25426816/a9d40530-2a70-11e7-9758-8a0da6341035.png" width="320" alt="Web Template">
-    <br>
-    <br>
     <img src="/Screenshots/login.png?raw=true">
     <br>
     <img src="/Screenshots/admin.png?raw=true">
