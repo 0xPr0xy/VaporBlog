@@ -2,6 +2,10 @@ import Foundation
 import FluentProvider
 import Slugify
 
+public enum ArticleContext: Context {
+	case short
+}
+
 final class Article: Model, Parameterizable {
 	
 	var name: String
@@ -61,10 +65,26 @@ extension Article: NodeRepresentable {
 		var node = Node(context)
 		try node.set("name", name)
 		try node.set("slug", slug)
-		try node.set("body", body)
 		try node.set("id", id)
 		try node.set("page", page.get())
+		
+		guard let providedContext = context else {
+			try node.set("body", body)
+			return node
+		}
 
+		if type(of: providedContext) != ArticleContext.self {
+			try node.set("body", body)
+			return node
+		}
+		
+		switch providedContext {
+			case ArticleContext.short:
+				try node.set("body", partialBody(numberOfCharacters: 750))
+				break
+			default: break
+		}
+		
 		return node
 	}
 }
@@ -83,6 +103,19 @@ extension Article: Preparation {
 	
 	static func revert(_ database: Database) throws {
 		try database.delete(self)
+	}
+}
+
+// MARK: Utilities
+
+extension Article {
+	
+	func partialBody(numberOfCharacters: Int) -> String {
+		if body.count <= numberOfCharacters {
+			return body
+		}
+		
+		return String(body.prefix(numberOfCharacters).appending("..."))
 	}
 }
 

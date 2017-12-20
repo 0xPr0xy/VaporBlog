@@ -23,9 +23,11 @@ final class PageController {
 		let slug = request.uri.lastPathComponent ?? ""
 		let page = try PageProvider.pageWithSlug(slug)
 		let articles = try page?.articles.all().paginator(3, request: request)
+		let articlesWithShortBody = try articles?.makeNode(in: ArticleContext.short)
+
 		let pages = try PageProvider.allPages()
 		
-		return try view.makePageView(request, config, pages: pages, page: page, articles: articles)
+		return try view.makePageView(request, config, pages: pages, page: page, articles: articlesWithShortBody)
 	}
 	
 	// MARK: - Private Routes -

@@ -48,7 +48,7 @@
 		</ul>
 
 		<form class="form-inline" action="/search" method="get">
-			<input class="form-control mr-sm-2" type="text" name="search" placeholder="Search">
+			<input class="form-control mr-sm-2" type="text" name="search" placeholder="Search" value="#if(searchTerm){#(searchTerm)}">
 			<button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
 		</form>
 

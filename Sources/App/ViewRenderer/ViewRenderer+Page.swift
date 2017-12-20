@@ -2,12 +2,12 @@ import Paginator
 
 extension ViewRenderer {
 	
-	func makePageView(_ request: Request, _ config: Config, pages: [Page], page: Page? = nil, articles: Paginator<Article>?) throws -> View {
+	func makePageView(_ request: Request, _ config: Config, pages: [Page], page: Page? = nil, articles: Node?) throws -> View {
 		return try self.make("page", [
 			"currentSlug": request.uri.lastPathComponent ?? "",
 			"pages": pages,
-			"page":  page ?? false,
-			"articles": articles ?? [],
+			"page":  page,
+			"articles": articles,
 			"google_analytics_identifier" : config["third_party", "ga_identifier"]?.string ?? false,
 			"disqus_name" : config["third_party", "disqus_name"]?.string ?? false
 			], for: request

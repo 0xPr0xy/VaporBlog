@@ -20,9 +20,10 @@ final class SearchController {
 		}
 		
 		let pages = try PageProvider.allPages()
-		let results = try PageProvider.pagesWithKeywordPaginated(search, count: 10, request: request)
+		let results = try ArticleProvider.articlesWithKeywordPaginated(search, count: 10, request: request)
+		let resultsWithShortBody = try results.makeNode(in: ArticleContext.short)
 		
-		return try view.makeSearchResultsView(request, config, search: search, pages: pages, results: results)
+		return try view.makeSearchResultsView(request, config, search: search, pages: pages, results: resultsWithShortBody)
 	}
 	
 	private func addRoutes() {

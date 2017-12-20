@@ -1,20 +1,34 @@
 #extend("base")
 #export("title") { Results for #(searchTerm) }
+#export("css") {
+<style>
+mark {
+	background-color: #()0275d896;
+	padding: 0px;
+}
+</style>
+}
+
 #export("content") {
 
 	<div class="col-md-12">
 		<h1 class="text-center">Results for #(searchTerm)</h1>
 
 		<div class="list-group">
-
 			#if(results.data) {
 			#loop(results.data, "result") {
 
-				<a href="#(result.slug)" class="list-group-item list-group-item-action flex-column align-items-start mb-3">
-					<div class="d-flex w-100 justify-content-between">
-						<h5 class="mb-1">#(result.name)</h5>
-					</div>
-				</a>
+			<div class="card">
+				<div class="card-block">
+					<h4 class="card-title">#(result.name)</h4>
+					<h6 class="card-subtitle mb-2 text-muted">
+						<span class="badge badge-primary">#(result.page.name)</span>
+					</h6>
+					<p class="card-text">#(result.body)</p>
+					<a href="/#(result.page.slug)/articles/#(result.id)" class="card-link btn btn-primary">Open Article</a>
+					<a href="/#(result.page.slug)" class="card-link btn btn-secondary">Open Page</a>
+				</div>
+			</div>
 
 			}
 			#paginator(results)
@@ -27,4 +41,15 @@
 
 		</div>
 	</div>
+}
+
+#export("js") {
+<script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.0/dist/jquery.mark.es6.min.js" integrity="sha256-JD1hL6vpVBtkR8DhzXoWBh40DpSCwrvHsZLgbeRTgsk= sha384-yJZr0Gj9WqrJtN9WboBW5j1foKZAwiRvZ8BMUUvdYaoJyzxj7XSxOmCL1/THs6Gq sha512-9nYqM9eBjvsME/qdnlpi+jJo5WiwqS0NN3JVYaJlKjyYhMHNkzLWAABMFmH5kIxROXisCVx9QUBPzzBWTXg2zw==" crossorigin="anonymous"></script>
+<script>
+$(document).ready(function() {
+	$('.card-text').mark("#(searchTerm)", {
+		"separateWordSearch": false,
+	});
+});
+</script>
 }
