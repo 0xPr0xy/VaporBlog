@@ -23,13 +23,13 @@ final class LoginController {
 	
 	func login(_ request: Request) throws -> ResponseRepresentable {
 		guard
-			let email = request.formURLEncoded?["email"]?.string,
+			let username = request.formURLEncoded?["username"]?.string,
 			let password = request.formURLEncoded?["password"]?.string
 		else {
 			throw Abort.badRequest
 		}
 		
-		let credentials = Password(username: email, password: password)
+		let credentials = Password(username: username, password: password)
 		let user = try User.authenticate(credentials)
 		
 		request.auth.authenticate(user)

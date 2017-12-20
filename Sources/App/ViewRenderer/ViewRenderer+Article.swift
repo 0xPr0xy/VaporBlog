@@ -5,8 +5,8 @@ extension ViewRenderer {
 			"currentSlug": request.uri.lastPathComponent ?? "",
 			"article": article,
 			"pages": pages,
-			"google_analytics_identifier" : config["third_party", "ga_identifier"]?.string ?? false,
-			"disqus_name" : config["third_party", "disqus_name"]?.string ?? false
+			"google_analytics_identifier" : config["credentials", "ga_identifier"]?.string ?? false,
+			"disqus_name" : config["credentials", "disqus_name"]?.string ?? false
 			], for: request
 		)
 	}

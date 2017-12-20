@@ -4,7 +4,7 @@ extension ViewRenderer {
 		return try self.make("login", [
 			"currentSlug": request.uri.lastPathComponent ?? "",
 			"pages": pages,
-			"google_analytics_identifier" : config["third_party", "ga_identifier"]?.string ?? false
+			"google_analytics_identifier" : config["credentials", "ga_identifier"]?.string ?? false
 			], for: request
 		)
 	}

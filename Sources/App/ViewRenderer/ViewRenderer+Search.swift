@@ -8,7 +8,7 @@ extension ViewRenderer {
 			"searchTerm": search,
 			"pages": pages,
 			"results": results,
-			"google_analytics_identifier" : config["third_party", "ga_identifier"]?.string ?? false
+			"google_analytics_identifier" : config["credentials", "ga_identifier"]?.string ?? false
 			], for: request
 		)
 	}

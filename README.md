@@ -15,29 +15,30 @@
 
 <h2>Setup</h2>
 <h3>1. Fixture User</h3>
-<p>First create the following folder and file:<pre><code>Config/secrets/fixture_user.json</code></pre> Then, put the following json inside:</p>
+<p>Create the following folder and file<p>
+<pre><code>Config/secrets/credentials.json
+</code></pre>
+<p>Then, put the following json inside, and set at least the username and password. When running in production, it's safe to remove the username and password lines after the first run, since the user will not be recreated. </p>
 <pre><code>
 {
-	"name": "Admin",
-	"email": "name@email.com",
-	"password": "password"
+	"ga_api_client_id": "",
+	"ga_identifier": "",
+	"disqus_name": "",
+	"admin_username": "username",
+	"admin_password": "password"
 }
 </code></pre>
-<h3>2. Analytics and Disqus (optional)</h3>
-<p>Create the following folder and file:<pre><code>Config/secrets/third_party.json</code></pre> And put the following json inside:</p>
-<pre><code>
-{
-	"ga_api_client_id": "$GA_EMBED_API_CLIENT_ID",
-	"ga_identifier": "$GA_IDENTIFIER",
-	"disqus_name": "$DISQUS_NAME"
-}
-</code></pre>
-<h3>3. Install Dependencies</h3>
+<h3>2. Install Dependencies</h3>
 <pre><code>vapor fetch</code></pre>
-<h3>4. Build</h3>
+<h3>3. Build</h3>
 <pre><code>vapor build</code></pre>
-<h3>5. Run</h3>
+<h3>4. Run</h3>
 <pre><code>vapor run</code></pre>
+
+<h2>Running in Production</h2>
+<p>If you want to run in production, make sure you change `mysql.json` in the `Config/production/` folder.
+Then you run in production with</p>
+<pre><code>vapor run --env=production</code></pre>
 
 <p align="center">
     <img src="https://cloud.githubusercontent.com/assets/1977704/25426816/a9d40530-2a70-11e7-9758-8a0da6341035.png" width="320" alt="Web Template">

@@ -5,7 +5,7 @@ extension ViewRenderer {
 			throw Abort.unauthorized
 		}
 		
-		let analyticsClient = config["third_party", "ga_api_client_id"]?.string
+		let analyticsClient = config["credentials", "ga_api_client_id"]?.string
 
 		return try self.make("admin/admin", [
 			"currentSlug": request.uri.lastPathComponent ?? "",

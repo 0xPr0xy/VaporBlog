@@ -1,8 +1,4 @@
-final class Fixtures {
-	
-	enum FixtureError: Error {
-		case fixtureDoesNotExist
-	}
+final class PageFixtures {
 	
 	public static func load(config: Config) throws {
 		let blogPage = Page(name: "Blog")
@@ -28,16 +24,5 @@ final class Fixtures {
 		
 		let projectsArticleOne = Article(name: "Bushwick man braid", body: "Bushwick man braid af, fanny pack brooklyn asymmetrical you probably haven't heard of them hashtag. Next level listicle plaid, cronut cred succulents ethical activated charcoal taxidermy lo-fi hot chicken. Try-hard direct trade poutine, 3 wolf moon etsy meggings art party post-ironic echo park marfa hexagon salvia selvage microdosing yr. Hot chicken tattooed everyday carry schlitz deep v, pickled try-hard PBR&B literally leggings. Pok pok jianbing 90's, taxidermy skateboard yuccie kogi cray jean shorts green juice kickstarter.", page: projectsPage)
 		try projectsArticleOne.save()
-		
-		guard
-			let name = config["fixture_user", "name"]?.string,
-			let email = config["fixture_user", "email"]?.string,
-			let password  = config["fixture_user", "password"]?.string
-		else {
-			throw FixtureError.fixtureDoesNotExist
-		}
-		
-		let user = User(name: name, email: email, password: password)
-		try user.save()
 	}
 }

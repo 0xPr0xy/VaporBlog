@@ -6,10 +6,10 @@ extension ViewRenderer {
 		return try self.make("page", [
 			"currentSlug": request.uri.lastPathComponent ?? "",
 			"pages": pages,
-			"page":  page,
-			"articles": articles,
-			"google_analytics_identifier" : config["third_party", "ga_identifier"]?.string ?? false,
-			"disqus_name" : config["third_party", "disqus_name"]?.string ?? false
+			"page":  page as Any,
+			"articles": articles as Any,
+			"google_analytics_identifier" : config["credentials", "ga_identifier"]?.string ?? false,
+			"disqus_name" : config["credentials", "disqus_name"]?.string ?? false
 			], for: request
 		)
 	}
