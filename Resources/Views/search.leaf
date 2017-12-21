@@ -21,9 +21,9 @@ mark {
 			<div class="card mb-3">
 				<div class="card-body">
 					<h4 class="card-title">#(result.name)</h4>
-					<h6 class="card-subtitle mb-2 text-muted">
-						<span class="badge badge-primary">#(result.page.name)</span>
-					</h6>
+					<h5 class="card-subtitle mb-2 text-muted">
+						<a href="/#(result.page.slug)" class="badge badge-primary">#(result.page.name)</a>
+					</h5>
 					<p class="card-text">#(result.body)</p>
 					<a href="/#(result.page.slug)/articles/#(result.id)" class="card-link btn btn-primary">Open Article</a>
 					<a href="/#(result.page.slug)" class="card-link btn btn-secondary">Open Page</a>

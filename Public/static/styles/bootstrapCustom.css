@@ -1,0 +1,6 @@
+.card-body {
+	padding: 1.25rem;
+}
+.btn-warning, .btn-warning:hover {
+	color: white;
+}
