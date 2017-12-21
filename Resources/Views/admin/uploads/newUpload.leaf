@@ -4,7 +4,7 @@
 
 #export("content") {
 
-<div class="col-md-8 mx-auto">
+<div class="col-md-12 mx-auto">
 
 <h1 class="text-center">#(title)</h1>
 
@@ -14,7 +14,7 @@
 		<input type="file" class="form-control-file" id="inputFile" name="file" placeholder="Upload File" value="#(file_supplied)" autofocus required>
 	</div>
 
-	<button type="submit" class="btn btn-success btn-block">Create</button>
+	<button type="submit" class="btn btn-success">Create</button>
 
 </form>
 

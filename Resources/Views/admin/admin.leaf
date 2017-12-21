@@ -5,8 +5,9 @@
 }
 #export("content") {
 
-<div class="col-md-8 mx-auto">
-	<h1 class="text-center">#(title)</h1>
+<div class="col-md-12 mx-auto">
+
+<h1 class="text-center">#(title)</h1>
 
 #if(analytics_client_id) {
 	<div id="embed-api-auth-container"></div>

@@ -2,8 +2,9 @@
 #export("title") { #(title) }
 #export("content") {
 
-<div class="col-md-8 mx-auto">
+<div class="col-md-12 mx-auto">
 <h1 class="text-center">#(title)</h1>
+
 <div>
 
 #if(uploads) {
@@ -30,5 +31,5 @@
 </tbody>
 <table>
 }
-<a class="btn btn-success btn-block new-post-button" href="/admin/uploads/new">New Upload</a>
+<a class="btn btn-success new-post-button" href="/admin/uploads/new">New Upload</a>
 }

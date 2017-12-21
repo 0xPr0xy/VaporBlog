@@ -21,4 +21,4 @@
 	</tbody>
 <table>
 
-<a class="btn btn-success btn-block new-post-button" href="/admin/pages/new">New Page</a>
+<a class="btn btn-success new-post-button" href="/admin/pages/new">New Page</a>

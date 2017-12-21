@@ -18,8 +18,8 @@ mark {
 			#if(results.data) {
 			#loop(results.data, "result") {
 
-			<div class="card">
-				<div class="card-block">
+			<div class="card mb-3">
+				<div class="card-body">
 					<h4 class="card-title">#(result.name)</h4>
 					<h6 class="card-subtitle mb-2 text-muted">
 						<span class="badge badge-primary">#(result.page.name)</span>

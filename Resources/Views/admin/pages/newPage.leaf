@@ -5,9 +5,10 @@
 }
 #export("content") {
 
-<div class="col-md-8 mx-auto">
+<div class="col-md-12 mx-auto">
 
-	<h1 class="text-center">#(title)</h1>
+<h1 class="text-center">#(title)</h1>
+
 
 	<form class="form-page-new" action="/admin/pages/save" method="post">
 		<div class="form-group">
@@ -16,7 +17,7 @@
 		<div class="form-group">
 		<textarea rows="10" name="body" type="text" class="form-control" id="inputBody" value="#(page.body)" placeholder="Page Body"></textarea>
 		</div>
-		<button type="submit" class="btn btn-success btn-block">Create</button>
+		<button type="submit" class="btn btn-success">Create</button>
 	</form>
 
 <div>

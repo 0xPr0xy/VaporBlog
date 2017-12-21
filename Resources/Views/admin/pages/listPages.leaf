@@ -2,8 +2,10 @@
 #export("title") { #(title) }
 #export("content") {
 
-<div class="col-md-8 mx-auto">
+<div class="col-md-12 mx-auto">
+
 <h1 class="text-center">#(title)</h1>
+
 <div>
 
 #if(pages) { #embed("admin/pages/pages") }

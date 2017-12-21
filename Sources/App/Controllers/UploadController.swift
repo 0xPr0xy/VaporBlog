@@ -23,7 +23,7 @@ final class UploadController {
 	}
 	
 	private func upload(request: Request) throws -> ResponseRepresentable {
-		return try view.make("admin/uploads/newUpload", ["title": "Upload File"])
+		return try view.makeNewUploadView(request, title: "Upload File")
 	}
 	
 	private func delete(_ request: Request) throws -> ResponseRepresentable {
