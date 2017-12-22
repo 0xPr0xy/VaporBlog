@@ -4,26 +4,27 @@
 <link rel="stylesheet" href="/static/styles/prismHighlighting.css">
 }
 #export("content") {
+#if(page) {
 <div class="col-md-12 mx-auto">
 	<h1 class="text-center">#(page.name)</h1>
 	<p class="text-center">#markdown(page.body)<p>
 	<p class="text-center"><small class="badge badge-secondary">Last updated #(page.updated_at)</small></p>
-#if(articles.data) {
-#loop(articles.data, "article") {
-<div class="card mt-4 mb-4">
-	<div class="card-body">
-		<h4 class="card-title">#(article.name)</h4>
-		<p class="card-text">#markdown(article.body)</p>
-		<p class="card-text text-center"><small class="badge badge-secondary">Last updated #(article.updated_at)</small></p>
-		<a href="/#(page.slug)/articles/#(article.id)" class="btn btn-primary">View Article</a>
+	#if(articles.data) {
+	#loop(articles.data, "article") {
+	<div class="card mt-4 mb-4">
+		<div class="card-body">
+			<h4 class="card-title">#(article.name)</h4>
+			<p class="card-text">#markdown(article.body)</p>
+			<p class="card-text text-center"><small class="badge badge-secondary">Last updated #(article.updated_at)</small></p>
+			<a href="/#(page.slug)/articles/#(article.id)" class="btn btn-primary">View Article</a>
+		</div>
 	</div>
-</div>
-}
-#paginator(articles)
-}
+	}
+	#paginator(articles)
+	}
 <div>
 }
-
+}
 #export("js") {
 <script src="/static/js/prismHighlighting.js"></script>
 <div id="google-analytics-data" data-identifier="#templateVariable("google.analytics_identifier")"></div>
