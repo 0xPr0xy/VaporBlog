@@ -48,9 +48,9 @@
 <pre><code>
 {
 	"site": {
-	"name": "Vapor Blog",
-	"author": "Peter IJlst and Vapor contributors",
-	"description": "Vapor Blogging Framework in Swift"
+		"name": "Vapor Blog",
+		"author": "Peter IJlst and Vapor contributors",
+		"description": "Vapor Blogging Framework in Swift"
 	}
 }
 </code></pre>
