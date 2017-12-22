@@ -67,6 +67,9 @@ final class PageProvider {
 	
 	func deleteFromRequest(_ request: Request) throws {
 		let page = try getFromRequest(request)
+		if try page.articles.count() > 0 {
+			try page.articles.delete()
+		}
 		try page.delete()
 	}
 	

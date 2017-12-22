@@ -24,8 +24,11 @@ final class PageController {
 			}
 		}
 
-		let page = try PageProvider.shared.pageWithSlug(slug)
-		let articles = try ArticleProvider.shared.articlesFromPage(page!, request: request)
+		guard let page = try PageProvider.shared.pageWithSlug(slug) else {
+			throw Abort.notFound
+		}
+
+		let articles = try ArticleProvider.shared.articlesFromPage(page, request: request)
 		let articlesWithShortBody = try articles.makeNode(in: ArticleContext.short)
 		let pages = try PageProvider.shared.allPages()
 		
