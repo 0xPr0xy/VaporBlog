@@ -20,7 +20,11 @@ final class PageController {
 	func view(_ request: Request) throws -> ResponseRepresentable {
 		let slug = request.uri.lastPathComponent ?? ""
 		let page = try PageProvider.pageWithSlug(slug)
-		let articles = try page?.articles.all().paginator(3, request: request)
+		let articles = try page?.articles
+			.makeQuery()
+			.sort(Article.updatedAtKey, .descending)
+			.all()
+			.paginator(3, request: request)
 		let articlesWithShortBody = try articles?.makeNode(in: ArticleContext.short)
 
 		let pages = try PageProvider.allPages()

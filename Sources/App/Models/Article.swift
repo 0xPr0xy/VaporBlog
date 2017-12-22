@@ -6,7 +6,7 @@ public enum ArticleContext: Context {
 	case short
 }
 
-final class Article: Model, Parameterizable {
+final class Article: Model, Parameterizable, Timestampable {
 	
 	var name: String
 	var body: String
@@ -66,6 +66,8 @@ extension Article: NodeRepresentable {
 		try node.set("name", name)
 		try node.set("slug", slug)
 		try node.set("id", id)
+		try node.set("created_at", createdAt!.formatted())
+		try node.set("updated_at", updatedAt!.formatted())
 		try node.set("page", page.get())
 		
 		guard let providedContext = context else {

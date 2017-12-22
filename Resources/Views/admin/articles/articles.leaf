@@ -3,6 +3,8 @@
 <tr>
 <th>Title</th>
 <th>Page</th>
+<th>Created</th>
+<th>Updated</th>
 <th>Edit</th>
 <th>Delete</th>
 </tr>
@@ -14,6 +16,8 @@
 <tr>
 <td><a href="/#(article.page.slug)/articles/#(article.id)">#(article.name)</a></td>
 <td><a href="/#(article.page.slug)">#(article.page.name)</a></td>
+<td>#(article.created_at)</td>
+<td>#(article.updated_at)</td>
 <td><a class="btn btn-warning" href="/admin/articles/#(article.id)/show">Edit</a></td>
 <td><a class="btn btn-danger delete-post-button" href="/admin/articles/#(article.id)/delete">Delete</a></td>
 </tr>

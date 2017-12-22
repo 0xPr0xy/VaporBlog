@@ -4,6 +4,8 @@ final class PageProvider {
 	
 	static func allPages() throws -> [Page] {
 		return try Page
+			.makeQuery()
+			.sort(Page.createdAtKey, .descending)
 			.all()
 	}
 	
@@ -20,7 +22,9 @@ final class PageProvider {
 			.or() { orGroup in
 				try orGroup.filter("name", .contains, keyword)
 				try orGroup.filter("body", .contains, keyword)
-			}.all()
+			}
+			.sort(Page.createdAtKey, .descending)
+			.all()
 	}
 	
 	static func pageWithId(_ id: String) throws -> Page? {
@@ -34,6 +38,8 @@ final class PageProvider {
 			.or() { orGroup in
 				try orGroup.filter("name", .contains, keyword)
 				try orGroup.filter("body", .contains, keyword)
-			}.paginator(count, request: request)
+			}
+			.sort(Page.createdAtKey, .descending)
+			.paginator(count, request: request)
 	}
 }

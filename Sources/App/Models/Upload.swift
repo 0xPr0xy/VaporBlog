@@ -1,7 +1,7 @@
 import Foundation
 import FluentProvider
 
-final class Upload: Model, Parameterizable {
+final class Upload: Model, Parameterizable, Timestampable {
 	
 	var name: String
 	var path: String
@@ -35,6 +35,7 @@ extension Upload: NodeRepresentable {
 		var node = Node(context)
 		try node.set("name", name)
 		try node.set("path", path)
+		try node.set("created_at", createdAt!.formatted()
 		try node.set("id", id)
 		
 		return node

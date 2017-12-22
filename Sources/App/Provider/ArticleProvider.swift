@@ -4,6 +4,8 @@ final class ArticleProvider {
 	
 	static func allArticles() throws -> [Article] {
 		return try Article
+			.makeQuery()
+			.sort(Article.createdAtKey, .descending)
 			.all()
 	}
 	
@@ -18,7 +20,9 @@ final class ArticleProvider {
 			.or() { orGroup in
 				try orGroup.filter("name", .contains, keyword)
 				try orGroup.filter("body", .contains, keyword)
-			}.paginator(count, request: request)
+			}
+			.sort(Article.createdAtKey, .descending)
+			.paginator(count, request: request)
 	}
 }
 

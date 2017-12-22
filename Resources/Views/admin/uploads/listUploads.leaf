@@ -13,6 +13,7 @@
 <tr>
 <th>Image</th>
 <th>Name</th>
+<th>Created</th>
 <th>Delete</th>
 </tr>
 </thead>
@@ -23,6 +24,7 @@
 <tr>
 <td><img src="/static/uploads/#(upload.name)" width="200" class="rounded"/></td>
 <td><a href="/static/uploads/#(upload.name)">#(upload.name)</a></td>
+<td>#(upload.created_at)</td>
 <td><a class="btn btn-danger delete-post-button" href="/admin/uploads/#(upload.id)/delete">Delete</a></td>
 </tr>
 

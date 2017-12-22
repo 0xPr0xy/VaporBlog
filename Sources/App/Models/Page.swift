@@ -2,7 +2,7 @@ import Foundation
 import FluentProvider
 import Slugify
 
-final class Page: Model, Parameterizable {
+final class Page: Model, Parameterizable, Timestampable {
 	
 	var name: String
 	var slug: String
@@ -55,6 +55,8 @@ extension Page: NodeRepresentable {
 		try node.set("name", name)
 		try node.set("body", body)
 		try node.set("slug", slug)
+		try node.set("created_at", createdAt!.formatted())
+		try node.set("updated_at", updatedAt!.formatted())
 		try node.set("id", id)
 		
 		return node

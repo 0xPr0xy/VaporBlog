@@ -3,7 +3,7 @@
 
 ### Vapor ###
 Config/secrets
-
+Public/static/uploads/
 ### Vapor Patch ###
 Packages
 .build

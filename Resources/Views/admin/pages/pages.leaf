@@ -2,6 +2,8 @@
 	<thead>
 		<tr>
 			<th>Title</th>
+			<th>Created</th>
+			<th>Updated</th>
 			<th>Edit</th>
 			<th>Delete</th>
 		</tr>
@@ -12,6 +14,8 @@
 
 		<tr>
 			<td><a href="/#(page.slug)">#(page.name)</a></td>
+			<td>#(page.created_at)</td>
+			<td>#(page.updated_at)</td>
 			<td><a class="btn btn-warning" href="/admin/pages/#(page.id)/show">Edit</a></td>
 			<td><a class="btn btn-danger delete-post-button" href="/admin/pages/#(page.id)/delete">Delete</a></td>
 		</tr>
