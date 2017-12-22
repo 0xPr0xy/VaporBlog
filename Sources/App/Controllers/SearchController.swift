@@ -13,10 +13,7 @@ final class SearchController {
 	}
 	
 	func search(_ request: Request) throws -> ResponseRepresentable {
-		guard let search = request.query?["search"]?.string else {
-			return Response(redirect: "/")
-		}
-		
+		let search = request.query?["search"]?.string ?? ""
 		let pages = try PageProvider.shared.allPages()
 		let results = try ArticleProvider.shared.articlesWithKeywordPaginated(search, count: 10, request: request)
 		let resultsWithShortBody = try results.makeNode(in: ArticleContext.short)

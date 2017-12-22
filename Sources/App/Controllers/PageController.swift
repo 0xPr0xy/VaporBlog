@@ -18,23 +18,17 @@ final class PageController {
 	// MARK: - Public Routes -
 	
 	func view(_ request: Request) throws -> ResponseRepresentable {
-		var slug = request.uri.lastPathComponent ?? ""
-		let page: Page?
+		let slug = request.uri.lastPathComponent ?? ""
 		
 		if slug.isEmpty {
-			page = try PageProvider.shared.pageWithId("1")
-			slug = page?.slug ?? ""
-		} else {
-			page = try PageProvider.shared.pageWithSlug(slug)
+			if let page = try PageProvider.shared.pageWithId("1") {
+				return Response(redirect: page.slug)
+			}
 		}
 
-		let articles = try page?.articles
-			.makeQuery()
-			.sort(Article.updatedAtKey, .descending)
-			.all()
-			.paginator(3, request: request)
-		
-		let articlesWithShortBody = try articles?.makeNode(in: ArticleContext.short)
+		let page = try PageProvider.shared.pageWithSlug(slug)
+		let articles = try ArticleProvider.shared.articlesFromPage(page!, request: request)
+		let articlesWithShortBody = try articles.makeNode(in: ArticleContext.short)
 		let pages = try PageProvider.shared.allPages()
 		
 		return try view.makePageView(request, pages: pages, page: page, articles: articlesWithShortBody, slug: slug)
@@ -44,32 +38,16 @@ final class PageController {
 	
 	func list(_ request: Request) throws -> ResponseRepresentable {
 		let pages = try PageProvider.shared.allPages()
-		let title = "Pages Admin"
 		
-		return try view.makePageListView(request, pages: pages, title: title)
+		return try view.makePageListView(request, pages: pages)
 	}
 	
 	func new(_ request: Request) throws -> ResponseRepresentable {
-		let title = "New Page"
-		
-		return try view.makeNewPageView(request, title: title)
+		return try view.makeNewPageView(request)
 	}
 	
 	func save(_ request: Request) throws -> ResponseRepresentable {
-		guard let name = request.formURLEncoded?["name"]?.string else {
-			throw Abort.badRequest
-		}
-		
-		let page = Page(name: name)
-		if let body = request.formURLEncoded?["body"]?.string {
-			page.body = body
-		}
-		
-		if let intro = request.formURLEncoded?["intro"]?.string {
-			page.intro = intro
-		}
-		
-		try page.save()
+		let page = try PageProvider.shared.createFromRequest(request)
 		
 		self.publicRouteBuilder.get(page.slug, handler: view)
 		
@@ -77,56 +55,24 @@ final class PageController {
 	}
 	
 	func showEdit(_ request: Request) throws -> ResponseRepresentable {
-		let page = try getPage(request)
-		let title = "Edit Page"
-		
-		return try view.makeEditPageView(request, page: page, title: title)
+		let page = try PageProvider.shared.getFromRequest(request)
+
+		return try view.makeEditPageView(request, page: page)
 	}
 	
 	func edit(_ request: Request) throws -> ResponseRepresentable {
-		let page = try getPage(request)
-		
-		guard
-			let name = request.formURLEncoded?["name"]?.string
-		else {
-			throw Abort.badRequest
-		}
-		
-		page.name = name
-		
-		if let body = request.formURLEncoded?["body"]?.string {
-			page.body = body
-		}
-		
-		if let intro = request.formURLEncoded?["intro"]?.string {
-			page.intro = intro
-		}
-		
-		try page.save()
+		try PageProvider.shared.editFromRequest(request)
 		
 		return Response(redirect: "/admin/pages")
 	}
 	
 	func delete(_ request: Request) throws -> ResponseRepresentable {
-		let page = try getPage(request)
-		try page.delete()
+		try PageProvider.shared.deleteFromRequest(request)
 		
 		return Response(redirect: "/admin/pages")
 	}
 	
 	// MARK: - Private Methods -
-	
-	private func getPage(_ request: Request) throws -> Page {
-		guard let id = request.parameters["id"]?.string! else {
-			throw Abort.badRequest
-		}
-		
-		guard let page = try PageProvider.shared.pageWithId(id) else {
-			throw Abort.notFound
-		}
-		
-		return page
-	}
 	
 	private func addRoutes() throws {
 		adminRouteBuilder.get("admin/pages", handler: list)
@@ -137,8 +83,7 @@ final class PageController {
 		adminRouteBuilder.get("admin/pages/:id/delete", handler: delete)
 		
 		publicRouteBuilder.get(handler: view)
-
-		try Page.all().forEach { (page) in
+		try PageProvider.shared.allPages().forEach { (page) in
 			publicRouteBuilder.get(page.slug, handler: view)
 		}
 	}

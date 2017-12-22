@@ -17,68 +17,27 @@ final class UploadController {
 
 	private func list(request: Request) throws -> ResponseRepresentable {
 		let uploads = try UploadProvider.shared.allUploads()
-		return try view.makeUploadListView(request, uploads: uploads, title: "Uploads Admin")
+		return try view.makeUploadListView(request, uploads: uploads)
 	}
 	
 	private func upload(request: Request) throws -> ResponseRepresentable {
-		return try view.makeNewUploadView(request, title: "Upload File")
+		return try view.makeNewUploadView(request)
 	}
 	
 	private func delete(_ request: Request) throws -> ResponseRepresentable {
-		let upload = try getUpload(request)
-		
-		do {
-			try FileManager.default.removeItem(atPath: upload.path)
-			try upload.delete()
-		} catch {
-			throw Abort.serverError
-		}
+		try UploadProvider.shared.deleteFromRequest(request)
 		
 		return Response(redirect: "/admin/uploads")
 	}
 	
 	private func handle(request: Request) throws -> ResponseRepresentable {
-		guard let fileBytes = request.formData?["file"]?.part.body else {
-			throw Abort.badRequest
-		}
-		
-		guard let fileName = request.formData?["file"]?.filename else {
-			throw Abort.badRequest
-		}
-		
-		let fileUrl = URL(fileURLWithPath: uploadDir).appendingPathComponent(fileName.urlQueryPercentEncoded, isDirectory: false)
-		
-		do {
-			let data = Data(bytes: fileBytes)
-			try data.write(to: fileUrl)
-		} catch {
-			throw Abort.serverError
-		}
-		
-		do {
-			let newUpload = Upload(name: fileName, path: fileUrl.relativePath)
-			try newUpload.save()
-		} catch {
-			throw Abort.serverError
-		}
+		try UploadProvider.shared.createFromRequest(request, path: uploadDir)
 		
 		return Response(redirect: "/admin/uploads")
 	}
 	
 	// MARK: - Private Methods -
-	
-	private func getUpload(_ request: Request) throws -> Upload {
-		guard let id = request.parameters["id"]?.string! else {
-			throw Abort.badRequest
-		}
-		
-		guard let upload = try UploadProvider.shared.uploadWithId(id) else {
-			throw Abort.notFound
-		}
-		
-		return upload
-	}
-	
+
 	private func addRoutes() {
 		routeBuilder.get("admin/uploads/:id/delete", handler: delete)
 		routeBuilder.get("admin/uploads/new", handler: upload)

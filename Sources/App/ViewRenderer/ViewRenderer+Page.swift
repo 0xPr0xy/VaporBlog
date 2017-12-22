@@ -12,7 +12,7 @@ extension ViewRenderer {
 		)
 	}
 	
-	func makePageListView(_ request: Request, pages: [Page], title: String) throws -> View {
+	func makePageListView(_ request: Request, pages: [Page]) throws -> View {
 		guard let user: User = request.auth.authenticated() else {
 			throw Abort.unauthorized
 		}
@@ -21,12 +21,12 @@ extension ViewRenderer {
 			"currentSlug": request.uri.lastPathComponent ?? "",
 			"user":  user,
 			"pages": pages,
-			"title": title
+			"title": "Pages Admin"
 			], for: request
 		)
 	}
 
-	func makeNewPageView(_ request: Request, title: String) throws -> View {
+	func makeNewPageView(_ request: Request) throws -> View {
 		guard let user: User = request.auth.authenticated() else {
 			throw Abort.unauthorized
 		}
@@ -34,12 +34,12 @@ extension ViewRenderer {
 		return try self.make("admin/pages/newPage", [
 			"currentSlug": request.uri.lastPathComponent ?? "",
 			"user": user,
-			"title": title,
+			"title": "New Page",
 			], for: request
 		)
 	}
 	
-	func makeEditPageView(_ request: Request, page: Page, title: String) throws -> View {
+	func makeEditPageView(_ request: Request, page: Page) throws -> View {
 		guard let user: User = request.auth.authenticated() else {
 			throw Abort.unauthorized
 		}
@@ -48,7 +48,7 @@ extension ViewRenderer {
 			"currentSlug": request.uri.lastPathComponent ?? "",
 			"user": user,
 			"page": page,
-			"title": title,
+			"title": "Edit Page",
 			], for: request
 		)
 	}

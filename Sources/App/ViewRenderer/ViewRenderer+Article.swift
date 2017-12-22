@@ -9,7 +9,7 @@ extension ViewRenderer {
 		)
 	}
 	
-	func makeArticleListView(_ request: Request, articles: [Article], title: String) throws -> View {
+	func makeArticleListView(_ request: Request, articles: [Article]) throws -> View {
 		guard let user: User = request.auth.authenticated() else {
 			throw Abort.unauthorized
 		}
@@ -18,12 +18,12 @@ extension ViewRenderer {
 			"currentSlug": request.uri.lastPathComponent ?? "",
 			"user":  user,
 			"articles": articles,
-			"title": title
+			"title": "Articles Admin"
 			], for: request
 		)
 	}
 	
-	func makeNewArticleView(_ request: Request, pages: [Page], title: String) throws -> View {
+	func makeNewArticleView(_ request: Request, pages: [Page]) throws -> View {
 		guard let user: User = request.auth.authenticated() else {
 			throw Abort.unauthorized
 		}
@@ -31,13 +31,13 @@ extension ViewRenderer {
 		return try self.make("admin/articles/newArticle", [
 			"currentSlug": request.uri.lastPathComponent ?? "",
 			"user": user,
-			"title": title,
+			"title": "New Article",
 			"pages": pages
 			], for: request
 		)
 	}
 	
-	func makeEditArticleView(_ request: Request, article: Article, pages: [Page], title: String) throws -> View {
+	func makeEditArticleView(_ request: Request, article: Article, pages: [Page]) throws -> View {
 		guard let user: User = request.auth.authenticated() else {
 			throw Abort.unauthorized
 		}
@@ -46,7 +46,7 @@ extension ViewRenderer {
 			"currentSlug": request.uri.lastPathComponent ?? "",
 			"user": user,
 			"article": article,
-			"title": title,
+			"title": "Edit Article",
 			"pages": pages
 			], for: request
 		)

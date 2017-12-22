@@ -18,31 +18,67 @@ final class PageProvider {
 			.filter("slug", .equals, slug)
 			.first()
 	}
-	
-	func pagesWithKeyword(_ keyword: String) throws -> [Page] {
-		return try Page
-			.makeQuery()
-			.or() { orGroup in
-				try orGroup.filter("name", .contains, keyword)
-				try orGroup.filter("body", .contains, keyword)
-			}
-			.sort(Page.createdAtKey, .descending)
-			.all()
-	}
-	
+
 	func pageWithId(_ id: String) throws -> Page? {
 		return try Page
 			.find(id)
 	}
 	
-	func pagesWithKeywordPaginated(_ keyword: String, count: Int, request: Request) throws -> Paginator<Page> {
-		return try Page
-			.makeQuery()
-			.or() { orGroup in
-				try orGroup.filter("name", .contains, keyword)
-				try orGroup.filter("body", .contains, keyword)
-			}
-			.sort(Page.createdAtKey, .descending)
-			.paginator(count, request: request)
+	func createFromRequest(_ request: Request) throws -> Page {
+		guard let name = request.formURLEncoded?["name"]?.string else {
+			throw Abort.badRequest
+		}
+		
+		let page = Page(name: name)
+		if let body = request.formURLEncoded?["body"]?.string {
+			page.body = body
+		}
+		
+		if let intro = request.formURLEncoded?["intro"]?.string {
+			page.intro = intro
+		}
+		
+		try page.save()
+		
+		return page
+	}
+	
+	func editFromRequest(_ request: Request) throws {
+		let page = try getFromRequest(request)
+		
+		guard
+			let name = request.formURLEncoded?["name"]?.string
+		else {
+			throw Abort.badRequest
+		}
+		
+		page.name = name
+		
+		if let body = request.formURLEncoded?["body"]?.string {
+			page.body = body
+		}
+		
+		if let intro = request.formURLEncoded?["intro"]?.string {
+			page.intro = intro
+		}
+		
+		try page.save()
+	}
+	
+	func deleteFromRequest(_ request: Request) throws {
+		let page = try getFromRequest(request)
+		try page.delete()
+	}
+	
+	func getFromRequest(_ request: Request) throws -> Page {
+		guard let id = request.parameters["id"]?.string! else {
+			throw Abort.badRequest
+		}
+		
+		guard let page = try pageWithId(id) else {
+			throw Abort.notFound
+		}
+		
+		return page
 	}
 }

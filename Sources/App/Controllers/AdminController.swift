@@ -13,8 +13,7 @@ final class AdminController {
 	}
 
 	func index(_ request: Request) throws -> ResponseRepresentable {
-		let title = "Admin"
-		return try view.makeAdminView(request, title: title)
+		return try view.makeAdminView(request)
 	}
 	
 	private func addRoutes() {
