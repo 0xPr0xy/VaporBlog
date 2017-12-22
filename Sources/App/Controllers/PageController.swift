@@ -11,15 +11,13 @@ final class PageController {
 		self.view = view
 		self.adminRouteBuilder = adminRouteBuilder
 		self.publicRouteBuilder = publicRouteBuilder
-		
-		try self.addRoutes()
+		try addRoutes()
 	}
 	
 	// MARK: - Public Routes -
 	
 	func view(_ request: Request) throws -> ResponseRepresentable {
 		let slug = request.uri.lastPathComponent ?? ""
-		
 		if slug.isEmpty {
 			if let page = try PageProvider.shared.pageWithId("1") {
 				return Response(redirect: page.slug)
@@ -48,8 +46,7 @@ final class PageController {
 	
 	func save(_ request: Request) throws -> ResponseRepresentable {
 		let page = try PageProvider.shared.createFromRequest(request)
-		
-		self.publicRouteBuilder.get(page.slug, handler: view)
+		publicRouteBuilder.get(page.slug, handler: view)
 		
 		return Response(redirect: "/admin/pages")
 	}

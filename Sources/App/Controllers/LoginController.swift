@@ -10,7 +10,7 @@ final class LoginController {
 	init(_ view: ViewRenderer, routeBuilder: RouteBuilder) {
 		self.view = view
 		self.routeBuilder = routeBuilder
-		self.addRoutes()
+		addRoutes()
 	}
 	
 	func index(_ request: Request) throws -> ResponseRepresentable {

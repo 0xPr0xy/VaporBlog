@@ -12,11 +12,12 @@ final class UploadController {
 		self.view = view
 		self.uploadDir = uploadDir
 		self.routeBuilder = routeBuilder
-		self.addRoutes()
+		addRoutes()
 	}
 
 	private func list(request: Request) throws -> ResponseRepresentable {
 		let uploads = try UploadProvider.shared.allUploads()
+		
 		return try view.makeUploadListView(request, uploads: uploads)
 	}
 	

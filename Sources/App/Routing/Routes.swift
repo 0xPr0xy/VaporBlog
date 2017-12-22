@@ -37,6 +37,7 @@ final class Routes: RouteCollection {
 			self.sessionsMiddleware,
 			self.persistMiddleware
 		])
+		
 		_ = LoginController(view, routeBuilder: loginBuilder)
 		_ = SearchController(view, routeBuilder: loginBuilder)
 		

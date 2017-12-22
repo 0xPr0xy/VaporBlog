@@ -9,7 +9,7 @@ final class SearchController {
 	init(_ view: ViewRenderer, routeBuilder: RouteBuilder) {
 		self.view = view
 		self.routeBuilder = routeBuilder
-		self.addRoutes()
+		addRoutes()
 	}
 	
 	func search(_ request: Request) throws -> ResponseRepresentable {

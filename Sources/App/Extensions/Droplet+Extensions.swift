@@ -5,25 +5,29 @@ import LeafProvider
 extension Droplet {
 	
     public func setup() throws {
-		try loadFixtures()
-		try setupRoutes()
-		
-		if let leaf = self.view as? LeafRenderer {
-			leaf.stem.register(try TemplateVariable(config: self.config))
-		}
+		try loadFixtures() // needs to be done before routing
+		try registerRoutes()
+		try registerTags()
     }
 	
-	private func setupRoutes() throws {
+	private func registerTags() throws {
+		if let leaf = view as? LeafRenderer {
+			let tag = try TemplateVariable(config: config)
+			leaf.stem.register(tag)
+		}
+	}
+	
+	private func registerRoutes() throws {
 		let uploadDir = config.workDir.appending("/Public/static/uploads")
 		let routes = Routes(view, uploadDir: uploadDir)
+		
 		try collection(routes)
 	}
 	
 	private func loadFixtures() throws {
-		
 		if config.environment == .development {
 			if try Page.all().isEmpty {
-				try PageFixtures.load(config: config)
+				try PageFixtures.load()
 			}
 		}
 		

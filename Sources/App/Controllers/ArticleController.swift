@@ -12,7 +12,7 @@ final class ArticleController {
 		self.adminRouteBuilder = adminRouteBuilder
 		self.publicRouteBuilder = publicRouteBuilder
 		
-		try self.addRoutes()
+		try addRoutes()
 	}
 	
 	// MARK: - Public Routes -
@@ -67,7 +67,6 @@ final class ArticleController {
 	
 	private func addRoutes() throws {
 		publicRouteBuilder.get("/:slug/articles/:id", handler: view)
-		
 		adminRouteBuilder.get("admin/articles", handler: list)
 		adminRouteBuilder.get("admin/articles/new", handler: new)
 		adminRouteBuilder.post("admin/articles/save", handler: save)
