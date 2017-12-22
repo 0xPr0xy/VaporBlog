@@ -41,19 +41,6 @@
 	}
 }
 </code></pre>
-<p>And the following folder and file<p>
-<pre><code>Config/template.json
-</code></pre>
-<p>And put the following json inside. </p>
-<pre><code>
-{
-	"site": {
-		"name": "Vapor Blog",
-		"author": "Peter IJlst and Vapor contributors",
-		"description": "Vapor Blogging Framework in Swift"
-	}
-}
-</code></pre>
 <h3>3. Install Dependencies</h3>
 <pre><code>vapor fetch</code></pre>
 <h3>4. Build</h3>
