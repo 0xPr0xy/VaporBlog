@@ -6,7 +6,17 @@
 #export("content") {
 #if(page) {
 <div class="col-md-12 mx-auto">
+	#if(page.intro) {
+	<div class="jumbotron jumbotron-fluid">
+		<div class="container">
+			<h1 class="display-3">#(page.name)</h1>
+			<p class="lead">#markdown(page.intro)</p>
+		</div>
+	</div>
+	}
+	##else() {
 	<h1 class="text-center">#(page.name)</h1>
+	}
 	<p class="text-center">#markdown(page.body)<p>
 	<p class="text-center"><small class="badge badge-secondary">Last updated #(page.updated_at)</small></p>
 	#if(articles.data) {

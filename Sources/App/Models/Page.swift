@@ -6,6 +6,7 @@ final class Page: Model, Parameterizable, Timestampable {
 	
 	var name: String
 	var slug: String
+	var intro: String?
 	var body: String?
 	
 	let storage = Storage()
@@ -24,6 +25,7 @@ final class Page: Model, Parameterizable, Timestampable {
 		name = try row.get("name")
 		slug = try row.get("slug")
 		body = try row.get("body")
+		intro = try row.get("intro")
 	}
 	
 	func makeRow() throws -> Row {
@@ -31,6 +33,7 @@ final class Page: Model, Parameterizable, Timestampable {
 		try row.set("name", name)
 		try row.set("slug", slug)
 		try row.set("body", body)
+		try row.set("intro", intro)
 		
 		return row
 	}
@@ -54,6 +57,7 @@ extension Page: NodeRepresentable {
 		var node = Node(context)
 		try node.set("name", name)
 		try node.set("body", body)
+		try node.set("intro", intro)
 		try node.set("slug", slug)
 		try node.set("created_at", createdAt!.formatted())
 		try node.set("updated_at", updatedAt!.formatted())
@@ -70,6 +74,7 @@ extension Page: Preparation {
 			pages.id()
 			pages.string("name")
 			pages.text("body", optional: true, unique: false, default: nil)
+			pages.text("intro", optional: true, unique: false, default: nil)
 			pages.string("slug", unique: true)
 		}
 	}

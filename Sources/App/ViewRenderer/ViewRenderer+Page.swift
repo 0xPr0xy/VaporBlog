@@ -2,9 +2,9 @@ import Paginator
 
 extension ViewRenderer {
 	
-	func makePageView(_ request: Request, pages: [Page], page: Page? = nil, articles: Node?) throws -> View {
+	func makePageView(_ request: Request, pages: [Page], page: Page? = nil, articles: Node?, slug: String?) throws -> View {
 		return try self.make("page", [
-			"currentSlug": request.uri.lastPathComponent ?? "",
+			"currentSlug": slug ?? "",
 			"pages": pages,
 			"page":  page as Any,
 			"articles": articles as Any

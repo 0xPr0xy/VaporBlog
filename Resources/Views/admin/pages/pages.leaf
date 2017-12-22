@@ -2,6 +2,7 @@
 	<thead>
 		<tr>
 			<th>Title</th>
+			<th>Slug</th>
 			<th>Created</th>
 			<th>Updated</th>
 			<th>Edit</th>
@@ -13,7 +14,8 @@
 	#loop(pages, "page") {
 
 		<tr>
-			<td><a href="/#(page.slug)">#(page.name)</a></td>
+			<td>#(page.name)</td>
+			<td><a href="/#(page.slug)">#(page.slug)</a></td>
 			<td>#(page.created_at)</td>
 			<td>#(page.updated_at)</td>
 			<td><a class="btn btn-warning" href="/admin/pages/#(page.id)/show">Edit</a></td>

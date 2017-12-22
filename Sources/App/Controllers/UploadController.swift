@@ -16,7 +16,7 @@ final class UploadController {
 	}
 
 	private func list(request: Request) throws -> ResponseRepresentable {
-		let uploads = try UploadProvider.allUploads()
+		let uploads = try UploadProvider.shared.allUploads()
 		return try view.makeUploadListView(request, uploads: uploads, title: "Uploads Admin")
 	}
 	
@@ -72,7 +72,7 @@ final class UploadController {
 			throw Abort.badRequest
 		}
 		
-		guard let upload = try UploadProvider.uploadWithId(id) else {
+		guard let upload = try UploadProvider.shared.uploadWithId(id) else {
 			throw Abort.notFound
 		}
 		

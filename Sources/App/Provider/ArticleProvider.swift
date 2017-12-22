@@ -2,19 +2,22 @@ import Paginator
 
 final class ArticleProvider {
 	
-	static func allArticles() throws -> [Article] {
+	static let shared = ArticleProvider()
+	private init() {}
+	
+	func allArticles() throws -> [Article] {
 		return try Article
 			.makeQuery()
 			.sort(Article.createdAtKey, .descending)
 			.all()
 	}
 	
-	static func articleWithId(_ id: String) throws -> Article? {
+	func articleWithId(_ id: String) throws -> Article? {
 		return try Article
 			.find(id)
 	}
 	
-	static func articlesWithKeywordPaginated(_ keyword: String, count: Int, request: Request) throws -> Paginator<Article> {
+	func articlesWithKeywordPaginated(_ keyword: String, count: Int, request: Request) throws -> Paginator<Article> {
 		return try Article
 			.makeQuery()
 			.or() { orGroup in

@@ -4,3 +4,6 @@
 .btn-warning, .btn-warning:hover {
 	color: white;
 }
+.jumbotron {
+	padding: 1em;
+}

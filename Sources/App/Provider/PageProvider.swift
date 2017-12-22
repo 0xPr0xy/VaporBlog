@@ -2,21 +2,24 @@ import Paginator
 
 final class PageProvider {
 	
-	static func allPages() throws -> [Page] {
+	static let shared = PageProvider()
+	private init() {}
+	
+	func allPages() throws -> [Page] {
 		return try Page
 			.makeQuery()
-			.sort(Page.createdAtKey, .descending)
+			.sort(Page.idKey, .ascending)
 			.all()
 	}
 	
-	static func pageWithSlug(_ slug: String) throws -> Page? {
+	func pageWithSlug(_ slug: String) throws -> Page? {
 		return try Page
 			.makeQuery()
 			.filter("slug", .equals, slug)
 			.first()
 	}
 	
-	static func pagesWithKeyword(_ keyword: String) throws -> [Page] {
+	func pagesWithKeyword(_ keyword: String) throws -> [Page] {
 		return try Page
 			.makeQuery()
 			.or() { orGroup in
@@ -27,12 +30,12 @@ final class PageProvider {
 			.all()
 	}
 	
-	static func pageWithId(_ id: String) throws -> Page? {
+	func pageWithId(_ id: String) throws -> Page? {
 		return try Page
 			.find(id)
 	}
 	
-	static func pagesWithKeywordPaginated(_ keyword: String, count: Int, request: Request) throws -> Paginator<Page> {
+	func pagesWithKeywordPaginated(_ keyword: String, count: Int, request: Request) throws -> Paginator<Page> {
 		return try Page
 			.makeQuery()
 			.or() { orGroup in

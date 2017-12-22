@@ -14,7 +14,7 @@ final class LoginController {
 	}
 	
 	func index(_ request: Request) throws -> ResponseRepresentable {
-		let pages = try PageProvider.allPages()
+		let pages = try PageProvider.shared.allPages()
 		
 		return try view.makeLoginView(request, pages: pages)
 	}

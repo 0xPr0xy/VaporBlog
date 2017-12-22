@@ -17,8 +17,8 @@ final class SearchController {
 			return Response(redirect: "/")
 		}
 		
-		let pages = try PageProvider.allPages()
-		let results = try ArticleProvider.articlesWithKeywordPaginated(search, count: 10, request: request)
+		let pages = try PageProvider.shared.allPages()
+		let results = try ArticleProvider.shared.articlesWithKeywordPaginated(search, count: 10, request: request)
 		let resultsWithShortBody = try results.makeNode(in: ArticleContext.short)
 		
 		return try view.makeSearchResultsView(request, search: search, pages: pages, results: resultsWithShortBody)

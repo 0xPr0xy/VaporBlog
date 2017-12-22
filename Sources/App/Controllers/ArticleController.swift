@@ -19,7 +19,7 @@ final class ArticleController {
 	
 	func view(_ request: Request) throws -> ResponseRepresentable {
 		let article = try getArticle(request)
-		let pages = try PageProvider.allPages()
+		let pages = try PageProvider.shared.allPages()
 		
 		return try view.makeArticleView(request, pages: pages, article: article)
 	}
@@ -27,7 +27,7 @@ final class ArticleController {
 	// MARK: - Private Routes -
 
 	func list(_ request: Request) throws -> ResponseRepresentable {
-		let articles = try ArticleProvider.allArticles()
+		let articles = try ArticleProvider.shared.allArticles()
 		let title = "Articles Admin"
 		
 		return try view.makeArticleListView(request, articles: articles, title: title)
@@ -35,7 +35,7 @@ final class ArticleController {
 	
 	func new(_ request: Request) throws -> ResponseRepresentable {
 		let title = "New Article"
-		let pages = try PageProvider.allPages()
+		let pages = try PageProvider.shared.allPages()
 		
 		return try view.makeNewArticleView(request, pages: pages, title: title)
 	}
@@ -62,7 +62,7 @@ final class ArticleController {
 	func showEdit(_ request: Request) throws -> ResponseRepresentable {
 		let article = try getArticle(request)
 		let title = "Edit Article"
-		let pages = try PageProvider.allPages()
+		let pages = try PageProvider.shared.allPages()
 
 		return try view.makeEditArticleView(request, article: article, pages: pages, title: title)
 	}
@@ -116,7 +116,7 @@ final class ArticleController {
 			throw Abort.badRequest
 		}
 		
-		guard let article = try ArticleProvider.articleWithId(id) else {
+		guard let article = try ArticleProvider.shared.articleWithId(id) else {
 			throw Abort.notFound
 		}
 		

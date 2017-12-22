@@ -2,6 +2,11 @@
 #export("title") { #(title) }
 #export("css") {
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+<style>
+.CodeMirror, .CodeMirror-scroll {
+min-height: 100px;
+}
+</style>
 }
 #export("content") {
 
@@ -15,7 +20,10 @@
 			<input name="name" type="text" class="form-control" id="inputName" value="#(page.name)" placeholder="Page Name">
 		</div>
 		<div class="form-group">
-			<textarea rows="10" name="body" type="text" class="form-control" id="inputBody" placeholder="Page Body">#(page.body)</textarea>
+			<textarea name="intro" type="text" class="form-control" id="inputIntro" placeholder="Page Intro">#(page.intro)</textarea>
+		</div>
+		<div class="form-group">
+			<textarea name="body" type="text" class="form-control" id="inputBody" placeholder="Page Body">#(page.body)</textarea>
 		</div>
 
 		<button type="submit" class="btn btn-success">Save</button>
@@ -29,7 +37,8 @@
 <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 <script>
 $(document).ready(function() {
-var simplemde = new SimpleMDE();
+var simplemde = new SimpleMDE({ element: document.getElementById("inputBody") });
+var simplemde = new SimpleMDE({ element: document.getElementById("inputIntro") });
 });
 </script>
 }

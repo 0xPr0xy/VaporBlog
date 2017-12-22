@@ -18,24 +18,32 @@ final class PageController {
 	// MARK: - Public Routes -
 	
 	func view(_ request: Request) throws -> ResponseRepresentable {
-		let slug = request.uri.lastPathComponent ?? ""
-		let page = try PageProvider.pageWithSlug(slug)
+		var slug = request.uri.lastPathComponent ?? ""
+		let page: Page?
+		
+		if slug.isEmpty {
+			page = try PageProvider.shared.pageWithId("1")
+			slug = page?.slug ?? ""
+		} else {
+			page = try PageProvider.shared.pageWithSlug(slug)
+		}
+
 		let articles = try page?.articles
 			.makeQuery()
 			.sort(Article.updatedAtKey, .descending)
 			.all()
 			.paginator(3, request: request)
-		let articlesWithShortBody = try articles?.makeNode(in: ArticleContext.short)
-
-		let pages = try PageProvider.allPages()
 		
-		return try view.makePageView(request, pages: pages, page: page, articles: articlesWithShortBody)
+		let articlesWithShortBody = try articles?.makeNode(in: ArticleContext.short)
+		let pages = try PageProvider.shared.allPages()
+		
+		return try view.makePageView(request, pages: pages, page: page, articles: articlesWithShortBody, slug: slug)
 	}
 	
 	// MARK: - Private Routes -
 	
 	func list(_ request: Request) throws -> ResponseRepresentable {
-		let pages = try PageProvider.allPages()
+		let pages = try PageProvider.shared.allPages()
 		let title = "Pages Admin"
 		
 		return try view.makePageListView(request, pages: pages, title: title)
@@ -56,6 +64,11 @@ final class PageController {
 		if let body = request.formURLEncoded?["body"]?.string {
 			page.body = body
 		}
+		
+		if let intro = request.formURLEncoded?["intro"]?.string {
+			page.intro = intro
+		}
+		
 		try page.save()
 		
 		self.publicRouteBuilder.get(page.slug, handler: view)
@@ -85,6 +98,10 @@ final class PageController {
 			page.body = body
 		}
 		
+		if let intro = request.formURLEncoded?["intro"]?.string {
+			page.intro = intro
+		}
+		
 		try page.save()
 		
 		return Response(redirect: "/admin/pages")
@@ -104,7 +121,7 @@ final class PageController {
 			throw Abort.badRequest
 		}
 		
-		guard let page = try PageProvider.pageWithId(id) else {
+		guard let page = try PageProvider.shared.pageWithId(id) else {
 			throw Abort.notFound
 		}
 		
@@ -120,7 +137,7 @@ final class PageController {
 		adminRouteBuilder.get("admin/pages/:id/delete", handler: delete)
 		
 		publicRouteBuilder.get(handler: view)
-		
+
 		try Page.all().forEach { (page) in
 			publicRouteBuilder.get(page.slug, handler: view)
 		}
