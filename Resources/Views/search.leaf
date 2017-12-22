@@ -25,7 +25,7 @@ mark {
 					<h5 class="card-subtitle mb-2 text-muted">
 						<a href="/#(result.page.slug)" class="badge badge-primary">#(result.page.name)</a>
 					</h5>
-					<p class="card-text">#markdown(result.body)</p>
+					#markdown(result.body)
 					<a href="/#(result.page.slug)/articles/#(result.id)" class="card-link btn btn-primary">Open Article</a>
 					<a href="/#(result.page.slug)" class="card-link btn btn-secondary">Open Page</a>
 				</div>
@@ -49,7 +49,7 @@ mark {
 <script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.0/dist/jquery.mark.es6.min.js" integrity="sha256-JD1hL6vpVBtkR8DhzXoWBh40DpSCwrvHsZLgbeRTgsk= sha384-yJZr0Gj9WqrJtN9WboBW5j1foKZAwiRvZ8BMUUvdYaoJyzxj7XSxOmCL1/THs6Gq sha512-9nYqM9eBjvsME/qdnlpi+jJo5WiwqS0NN3JVYaJlKjyYhMHNkzLWAABMFmH5kIxROXisCVx9QUBPzzBWTXg2zw==" crossorigin="anonymous"></script>
 <script>
 $(document).ready(function() {
-	$('.card-text').mark("#(searchTerm)", {
+	$('.card-body p').mark("#(searchTerm)", {
 		"separateWordSearch": false,
 	});
 });
