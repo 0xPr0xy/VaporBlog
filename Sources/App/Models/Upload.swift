@@ -35,7 +35,7 @@ extension Upload: NodeRepresentable {
 		var node = Node(context)
 		try node.set("name", name)
 		try node.set("path", path)
-		try node.set("created_at", createdAt!.formatted()
+		try node.set("created_at", createdAt!.formatted())
 		try node.set("id", id)
 		
 		return node
