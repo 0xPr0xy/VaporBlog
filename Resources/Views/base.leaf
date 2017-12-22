@@ -2,8 +2,8 @@
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="Vapor Blogging Framework in Swift">
-	<meta name="author" content="Peter IJlst and Vapor contributors">
+	<meta name="description" content="#templateVariable("site.description")">
+	<meta name="author" content="#templateVariable("site.author")">
 
 	<title>#import("title")</title>
 	#embed("css")

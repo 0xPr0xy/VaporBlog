@@ -4,7 +4,7 @@
 		<span class="navbar-toggler-icon"></span>
 	</button>
 
-	<a class="navbar-brand" href="/">Navbar</a>
+	<a class="navbar-brand" href="/">#templateVariable("site.name")</a>
 
 	<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 

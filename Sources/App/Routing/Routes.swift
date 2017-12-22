@@ -6,15 +6,15 @@ import HTTP
 final class Routes: RouteCollection {
 	
 	let view: ViewRenderer
-	let config: Config
+	let uploadDir: String
 	let passwordMiddleware: PasswordAuthenticationMiddleware<User>
 	let persistMiddleware: PersistMiddleware<User>
 	let sessionsMiddleware: SessionsMiddleware
 	let redirectMiddleware: RedirectMiddleware
 	
-	init(_ view: ViewRenderer, _ config: Config) {
+	init(_ view: ViewRenderer, uploadDir: String) {
         self.view = view
-		self.config = config
+		self.uploadDir = uploadDir
 		self.passwordMiddleware = PasswordAuthenticationMiddleware(User.self)
 		self.persistMiddleware = PersistMiddleware(User.self)
 		self.sessionsMiddleware = SessionsMiddleware(MemorySessions())
@@ -30,17 +30,17 @@ final class Routes: RouteCollection {
 			self.passwordMiddleware
 		])
 		
-		_ = AdminController(view, config, routeBuilder: adminBuilder)
-		_ = UploadController(view, config, routeBuilder: adminBuilder)
+		_ = AdminController(view, routeBuilder: adminBuilder)
+		_ = UploadController(view, uploadDir: uploadDir, routeBuilder: adminBuilder)
 
 		let loginBuilder = builder.grouped([
 			self.sessionsMiddleware,
 			self.persistMiddleware
 		])
-		_ = LoginController(view, config, routeBuilder: loginBuilder)
-		_ = SearchController(view, config, routeBuilder: loginBuilder)
+		_ = LoginController(view, routeBuilder: loginBuilder)
+		_ = SearchController(view, routeBuilder: loginBuilder)
 		
-		_ = try PageController(view, config, adminRouteBuilder: adminBuilder, publicRouteBuilder: loginBuilder)
-		_ = try ArticleController(view, config, adminRouteBuilder: adminBuilder, publicRouteBuilder: loginBuilder)
+		_ = try PageController(view, adminRouteBuilder: adminBuilder, publicRouteBuilder: loginBuilder)
+		_ = try ArticleController(view, adminRouteBuilder: adminBuilder, publicRouteBuilder: loginBuilder)
 	}
 }

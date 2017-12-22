@@ -5,14 +5,12 @@ import Foundation
 final class UploadController {
 	
 	let view: ViewRenderer
-	let config: Config
 	let routeBuilder: RouteBuilder
 	let uploadDir: String
 	
-	init(_ view: ViewRenderer, _ config: Config, routeBuilder: RouteBuilder) {
+	init(_ view: ViewRenderer, uploadDir: String, routeBuilder: RouteBuilder) {
 		self.view = view
-		self.config = config
-		self.uploadDir = config.workDir.appending("/Public/static/uploads")
+		self.uploadDir = uploadDir
 		self.routeBuilder = routeBuilder
 		self.addRoutes()
 	}

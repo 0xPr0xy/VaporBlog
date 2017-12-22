@@ -1,10 +1,9 @@
 extension ViewRenderer {
 	
-	func makeLoginView(_ request: Request, _ config: Config, pages: [Page]) throws -> View {
+	func makeLoginView(_ request: Request, pages: [Page]) throws -> View {
 		return try self.make("login", [
 			"currentSlug": request.uri.lastPathComponent ?? "",
-			"pages": pages,
-			"google_analytics_identifier" : config["credentials", "ga_identifier"]?.string ?? false
+			"pages": pages
 			], for: request
 		)
 	}

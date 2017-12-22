@@ -5,12 +5,10 @@ import AuthProvider
 final class LoginController {
 	
 	let view: ViewRenderer
-	let config: Config
 	let routeBuilder: RouteBuilder
 	
-	init(_ view: ViewRenderer, _ config: Config, routeBuilder: RouteBuilder) {
+	init(_ view: ViewRenderer, routeBuilder: RouteBuilder) {
 		self.view = view
-		self.config = config
 		self.routeBuilder = routeBuilder
 		self.addRoutes()
 	}
@@ -18,7 +16,7 @@ final class LoginController {
 	func index(_ request: Request) throws -> ResponseRepresentable {
 		let pages = try PageProvider.allPages()
 		
-		return try view.makeLoginView(request, config, pages: pages)
+		return try view.makeLoginView(request, pages: pages)
 	}
 	
 	func login(_ request: Request) throws -> ResponseRepresentable {

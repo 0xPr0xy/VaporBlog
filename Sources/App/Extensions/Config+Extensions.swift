@@ -14,7 +14,7 @@ extension Config {
         try setupProviders()
 		setupPreparations()
     }
-
+	
     private func setupProviders() throws {
         try addProvider(LeafProvider.Provider.self)
 		try addProvider(FluentProvider.Provider.self)

@@ -11,7 +11,7 @@
 <form enctype="multipart/form-data" action="/admin/uploads/new" id="create-upload-form" method="post" class="mt-3" novalidate>
 
 	<div class="form-group" id="create-upload-file-group">
-		<input type="file" class="form-control-file" id="inputFile" name="file" placeholder="Upload File" value="#(file_supplied)" autofocus required>
+		<input type="file" class="form-control-file" id="inputFile" name="file" placeholder="Upload File" autofocus required>
 	</div>
 
 	<button type="submit" class="btn btn-success">Create</button>

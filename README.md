@@ -18,21 +18,47 @@
 <p>Create the following folder and file<p>
 <pre><code>Config/secrets/credentials.json
 </code></pre>
-<p>Then, put the following json inside, and set at least the username and password. When running in production, it's safe to remove the username and password lines after the first run, since the user will not be recreated. </p>
+<p>Then, put the following json inside, and set the username and password. When running in production, it's safe to remove the file after the first run, since the user will not be recreated. </p>
 <pre><code>
 {
-	"ga_api_client_id": "",
-	"ga_identifier": "",
-	"disqus_name": "",
 	"admin_username": "username",
 	"admin_password": "password"
 }
 </code></pre>
-<h3>2. Install Dependencies</h3>
+<h3>2. Template Variables</h3>
+<p>Create the following folder and file<p>
+<pre><code>Config/secrets/template.json
+</code></pre>
+<p>Then, put the following json inside. </p>
+<pre><code>
+{
+	"google": {
+		"api_key": "",
+		"analytics_identifier": ""
+	},
+	"disqus": {
+		"name": ""
+	}
+}
+</code></pre>
+<p>And the following folder and file<p>
+<pre><code>Config/template.json
+</code></pre>
+<p>And put the following json inside. </p>
+<pre><code>
+{
+	"site": {
+	"name": "Vapor Blog",
+	"author": "Peter IJlst and Vapor contributors",
+	"description": "Vapor Blogging Framework in Swift"
+	}
+}
+</code></pre>
+<h3>3. Install Dependencies</h3>
 <pre><code>vapor fetch</code></pre>
-<h3>3. Build</h3>
+<h3>4. Build</h3>
 <pre><code>vapor build</code></pre>
-<h3>4. Run</h3>
+<h3>5. Run</h3>
 <pre><code>vapor run</code></pre>
 
 <h2>Running in Production</h2>
@@ -49,11 +75,11 @@
     <br>
     <img src="/Screenshots/admin_articles.png?raw=true">
     <br>
-    <img src="/Screenshots/uploads.png?raw=true">
+    <img src="/Screenshots/admin_uploads.png?raw=true">
     <br>
     <img src="/Screenshots/admin_articles_new.png?raw=true">
     <br>
-    <img src="/Screenshots/syntax.png?raw=true">
+    <img src="/Screenshots/blog.png?raw=true">
     <br>
     <img src="/Screenshots/search.png?raw=true">
     <br>

@@ -12,22 +12,17 @@
 	</div>
 </div>
 
-#if(disqus_name) {
-<div id="article-data" data-article-identifier="#(article.id)" data-disqus-name="#(disqus_name)"></div>
+<div id="article-data" data-article-identifier="#(article.id)" data-disqus-name="#templateVariable("disqus.name")"></div>
 <div id="disqus_thread" class="text-center col-md-10 ml-auto mr-auto"></div>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 }
-<div>
+</div>
 }
 
 #export("js") {
 <script src="/static/js/prismHighlighting.js"></script>
-#if(disqus_name) {
 <script src="/static/js/disqus.js"></script>
-}
 <script src="/static/js/prismHighlighting.js"></script>
-#if(google_analytics_identifier) {
-<div id="google-analytics-data" data-identifier="#(google_analytics_identifier)"></div>
+<div id="google-analytics-data" data-identifier="#templateVariable("google.analytics_identifier")"></div>
 <script src="/static/js/analytics.js"></script>
-}
 }

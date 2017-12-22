@@ -4,13 +4,11 @@ import HTTP
 final class PageController {
 	
 	let view: ViewRenderer
-	let config: Config
 	let adminRouteBuilder: RouteBuilder
 	let publicRouteBuilder: RouteBuilder
 	
-	init(_ view: ViewRenderer, _ config: Config, adminRouteBuilder: RouteBuilder, publicRouteBuilder: RouteBuilder) throws {
+	init(_ view: ViewRenderer, adminRouteBuilder: RouteBuilder, publicRouteBuilder: RouteBuilder) throws {
 		self.view = view
-		self.config = config
 		self.adminRouteBuilder = adminRouteBuilder
 		self.publicRouteBuilder = publicRouteBuilder
 		
@@ -27,7 +25,7 @@ final class PageController {
 
 		let pages = try PageProvider.allPages()
 		
-		return try view.makePageView(request, config, pages: pages, page: page, articles: articlesWithShortBody)
+		return try view.makePageView(request, pages: pages, page: page, articles: articlesWithShortBody)
 	}
 	
 	// MARK: - Private Routes -

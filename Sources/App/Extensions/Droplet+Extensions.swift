@@ -1,14 +1,21 @@
 @_exported import Vapor
 
+import LeafProvider
+
 extension Droplet {
 	
     public func setup() throws {
 		try loadFixtures()
 		try setupRoutes()
+		
+		if let leaf = self.view as? LeafRenderer {
+			leaf.stem.register(try TemplateVariable(config: self.config))
+		}
     }
 	
 	private func setupRoutes() throws {
-		let routes = Routes(view, config)
+		let uploadDir = config.workDir.appending("/Public/static/uploads")
+		let routes = Routes(view, uploadDir: uploadDir)
 		try collection(routes)
 	}
 	

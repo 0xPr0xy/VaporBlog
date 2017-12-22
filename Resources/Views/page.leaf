@@ -26,8 +26,6 @@
 
 #export("js") {
 <script src="/static/js/prismHighlighting.js"></script>
-#if(google_analytics_identifier) {
-<div id="google-analytics-data" data-identifier="#(google_analytics_identifier)"></div>
+<div id="google-analytics-data" data-identifier="#templateVariable("google.analytics_identifier")"></div>
 <script src="/static/js/analytics.js"></script>
-}
 }

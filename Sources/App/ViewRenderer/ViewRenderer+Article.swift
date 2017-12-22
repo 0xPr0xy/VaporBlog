@@ -1,12 +1,10 @@
 extension ViewRenderer {
 	
-	func makeArticleView(_ request: Request, _ config: Config, pages: [Page], article: Article) throws -> View {
+	func makeArticleView(_ request: Request, pages: [Page], article: Article) throws -> View {
 		return try self.make("article", [
 			"currentSlug": request.uri.lastPathComponent ?? "",
 			"article": article,
-			"pages": pages,
-			"google_analytics_identifier" : config["credentials", "ga_identifier"]?.string ?? false,
-			"disqus_name" : config["credentials", "disqus_name"]?.string ?? false
+			"pages": pages
 			], for: request
 		)
 	}

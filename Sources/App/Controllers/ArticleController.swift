@@ -4,13 +4,11 @@ import HTTP
 final class ArticleController {
 	
 	let view: ViewRenderer
-	let config: Config
 	let adminRouteBuilder: RouteBuilder
 	let publicRouteBuilder: RouteBuilder
 	
-	init(_ view: ViewRenderer, _ config: Config, adminRouteBuilder: RouteBuilder, publicRouteBuilder: RouteBuilder) throws {
+	init(_ view: ViewRenderer, adminRouteBuilder: RouteBuilder, publicRouteBuilder: RouteBuilder) throws {
 		self.view = view
-		self.config = config
 		self.adminRouteBuilder = adminRouteBuilder
 		self.publicRouteBuilder = publicRouteBuilder
 		
@@ -23,7 +21,7 @@ final class ArticleController {
 		let article = try getArticle(request)
 		let pages = try PageProvider.allPages()
 		
-		return try view.makeArticleView(request, config, pages: pages, article: article)
+		return try view.makeArticleView(request, pages: pages, article: article)
 	}
 	
 	// MARK: - Private Routes -
